@@ -1,0 +1,52 @@
+@use '../../utils/' as u;
+@use '../../utils/mixins' as *;
+
+/********** this is for adding a new class **********/
+
+.design-modules {
+    .add-module {
+        @include right-alignment;
+        &:hover {
+            transform: translateY(0.1rem);
+        }
+        div {
+            @include right-alignment-div;
+            i,
+            a {
+                font-size: 0.8rem;
+                color: var(--whiteColor);
+            }
+        }
+    }
+    .modules {
+        display: grid;
+        grid-template-columns: auto auto;
+        margin-top: 10px;
+        .module-name {
+            padding: 18px;
+            display: flex;
+            margin-top: 5px;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0px 5px 10px var(--grayShadow);
+            div {
+                display: flex;
+                align-items: center;
+                span {
+                    color: var(--blueColor);
+                    font-weight: 600;
+                }
+                .modify {
+                    @include btn-popup;
+                    color: var(--blueColor);
+                    background-color: var(--btnColor);
+                }
+                .delete {
+                    @include btn-popup;
+                    color: var(--redColor);
+                    background-color: var(--btnColor);
+                }
+            }
+        }
+    }
+}

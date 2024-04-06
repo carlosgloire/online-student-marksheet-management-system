@@ -1,0 +1,65 @@
+@mixin nav-home {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    width: fit-content;
+    color: var(--grayColor);
+    transition: width 0.8s 0.2s;
+}
+
+@mixin nav-icon {
+    font-size: 1.5rem;
+    border-radius: 50%;
+    padding: 10px 10px;
+}
+
+@mixin nav-hover {
+    border-radius: 25px;
+    color: var(--whiteColor);
+    background-color: var(--blueColor);
+}
+
+@mixin popup-btn {
+    width: 100%;
+    padding: 10px 15px;
+    text-transform: uppercase;
+    color: var(--whiteColor);
+    font-weight: 700;
+}
+
+
+/***** for all the button of adding *****/
+
+@mixin right-alignment {
+    display: flex;
+    justify-content: flex-end;
+}
+
+@mixin right-alignment-div {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    -webkit-column-gap: 5px;
+    width: fit-content;
+    padding: 10px 15px;
+    margin-top: 10px;
+    border-radius: 5px;
+    background-color: var(--blueColor);
+}
+
+@mixin right-alignment-i-a {
+    cursor: pointer;
+    font-size: 0.8rem;
+    color: var(--whiteColor);
+}
+
+
+/***** this is for all the button of our popup *****/
+
+@mixin btn-popup {
+    cursor: pointer;
+    margin-left: 5px;
+    padding: 8px 10px;
+    font-size: 0.8rem;
+    border-radius: 3px;
+}

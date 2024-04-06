@@ -1,0 +1,55 @@
+@use '../../utils/' as u;
+@use '../../utils/mixins' as *;
+
+/********* all the content of the page titulaire **********/
+
+.add-titulaire {
+    @include right-alignment;
+    &:hover {
+        transform: translateY(0.1rem);
+    }
+    div {
+        @include right-alignment-div;
+        i,
+        a {
+            @include right-alignment-i-a;
+        }
+    }
+}
+
+.all-titulaire {
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+
+.titulaire-item {
+    width: 100%;
+    margin-top: 15px;
+    padding: 10px 15px;
+    box-shadow: 0px 5px 15px var(--grayShadow);
+    .item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        img {
+            width: 120px;
+            height: 120px;
+            border-radius: 100%;
+            object-fit: cover;
+        }
+        .modify {
+            @include btn-popup;
+            margin-top: 5px;
+            font-size: 0.8rem;
+            color: var(--blueColor);
+            background-color: var(--btnColor);
+        }
+        .delete {
+            margin-top: 5px;
+            font-size: 0.8rem;
+            @include btn-popup;
+            color: var(--redColor);
+            background-color: var(--btnColor);
+        }
+    }
+}

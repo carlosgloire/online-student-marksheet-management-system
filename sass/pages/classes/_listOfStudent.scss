@@ -1,0 +1,86 @@
+@use '../../utils/' as u;
+@use '../../utils/mixins' as *;
+.add-student {
+    @include right-alignment;
+    div {
+        @include right-alignment-div;
+        &:hover {
+            transform: translateY(0.1rem);
+        }
+        i,
+        a {
+            @include right-alignment-i-a;
+        }
+    }
+}
+
+.list-student {
+    margin-top: 20px;
+}
+
+.student-identity {
+    display: flex;
+    justify-content: space-between;
+    padding: 18px;
+    box-shadow: 0px 5px 10px var(--grayShadow);
+    div {
+        display: flex;
+        align-items: center;
+    }
+    .modify {
+        @include btn-popup;
+        color: var(--blueColor);
+        background-color: var(--btnColor);
+    }
+    .delete {
+        @include btn-popup;
+        color: var(--redColor);
+        background-color: var(--btnColor);
+    }
+}
+
+
+/********** THESE CODE BELLOW IS FOR OUR POPUP **********/
+
+.popup {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 3s ease;
+    transform: translate(-50%, -50%);
+    background-color: var(--blackShadow);
+    .popup-container {
+        width: fit-content;
+        padding: 40px 50px;
+        background-color: var(--whiteColor);
+        h4 {
+            margin-bottom: 5px;
+            color: var(--blueColor);
+        }
+        .popup-btn {
+            display: flex;
+            gap: 8px;
+            -webkit-column-gap: 8px;
+            margin-top: 15px;
+            .cancel-popup {
+                @include popup-btn;
+                color: var(--whiteColor);
+                background: linear-gradient(90deg, var(--blueColor), var(--gray));
+                background-color: var(--blueColor);
+            }
+            .delete-popup {
+                @include popup-btn;
+                background-color: var(--redColor);
+            }
+        }
+    }
+}
+
+.hidden-popup {
+    display: none;
+}

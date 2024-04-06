@@ -1,0 +1,52 @@
+@use '../../utils/' as u;
+.all-classes {
+    display: grid;
+    gap: 15px;
+    -webkit-column-gap: 15px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    grid-template-columns: auto auto auto;
+    .items {
+        display: grid;
+        padding: 20px 20px;
+        box-shadow: 0px 10px 15px var(--grayShadow);
+        &:hover {
+            box-shadow: 0px 20px 25px var(--grayShadow);
+        }
+        strong {
+            font-size: 0.9rem;
+            justify-self: right;
+            color: var(--blueColor);
+        }
+        p {
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+        div {
+            width: fit-content;
+            display: flex;
+            align-items: center;
+            gap: 3px;
+            padding: 7px 12px;
+            font-size: 0.8rem;
+            margin-top: 10px;
+            -webkit-column-gap: 3px;
+            transition: 0.8s;
+            transition-delay: width 0.2s;
+            border: 1px dashed var(--blueColor);
+            a,
+            i {
+                color: var(--blueColor);
+            }
+            &:hover {
+                transform: translateY(0.1rem);
+                border: 1px solid var(--blueColor);
+                background-color: var(--blueColor);
+                a,
+                i {
+                    color: var(--whiteColor);
+                }
+            }
+        }
+    }
+}

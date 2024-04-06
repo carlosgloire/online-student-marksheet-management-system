@@ -1,0 +1,12 @@
+@use '../utils/' as u;
+.connect-section {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .connect {
+        width: 40%;
+        padding: 20px 30px;
+        background-color: var(--whiteColor);
+    }
+}
