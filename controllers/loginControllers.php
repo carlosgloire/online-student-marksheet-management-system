@@ -10,7 +10,7 @@ if(isset($_POST['login'])){
          $request->execute();
          if ($admin = $request->fetch(PDO::FETCH_ASSOC)) {
             $_SESSION['admin']=$admin;
-            header("location:../admin/");
+            header("location: classes/classes.php");
             exit;
         }
      else{

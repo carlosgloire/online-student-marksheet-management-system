@@ -100,7 +100,10 @@ label {
     padding: 40px 50px;
     background-color: var(--whiteColor);
 }
-
+.error{
+    color: red;
+    font-size: 0.8rem;
+}
 .btn {
     margin-top: 25px;
     margin-bottom: 20px;

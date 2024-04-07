@@ -27,39 +27,7 @@
     </header>
     <section class="principal-Section">
         <!-- this is the nav bar for the left side of our system-->
-        <nav>
-            <div class="nav-content">
-                <a href="../classes/classes.html">
-                    <i class="fa-regular fa-copyright"></i>
-                    <p>Classes</p>
-                </a>
-                <a href="../addMarks/classes.html">
-                    <i class="fa-brands fa-maxcdn"></i>
-                    <p>Add marks</p>
-                </a>
-                <a href="../marks/classes.html">
-                    <i class="fa-brands fa-signal-messenger"></i>
-                    <p>Marks</p>
-                </a>
-                <a href="../modules/classes.html">
-                    <i class="fa-solid fa-gear"></i>
-                    <p>Modules</p>
-                </a>
-                <a class="home hover" href="#">
-                    <i class="fa-solid fa-globe"></i>
-                    <p>Titulaire</p>
-                </a>
-                <a href="#">
-                    <i class="fa-solid fa-star-of-life"></i>
-                    <p>Bulletin</p>
-                </a>
-                <button>
-                    <i class="fa-solid fa-power-off"></i>
-                    <p>Log out</p>
-                </button>
-            </div>
-        </nav>
-
+        <?php require_once('../navbar.php')?>
         <!-- this div contain all the titulaires of different classes -->
         <div class="titulaire-container">
             <h2>All The Titulaires</h2>
@@ -69,7 +37,7 @@
             <div class="add-titulaire">
                 <div>
                     <i class="fa-solid fa-plus"></i>
-                    <a href="./addNewTitulaire.html">Add a new titulaire</a>
+                    <a href="./addNewTitulaire.php">Add a new titulaire</a>
                 </div>
             </div>
 
