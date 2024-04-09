@@ -37,19 +37,21 @@
             border-radius: 100%;
             object-fit: cover;
         }
-        .modify {
-            @include btn-popup;
-            margin-top: 5px;
-            font-size: 0.8rem;
-            color: var(--blueColor);
-            background-color: var(--btnColor);
-        }
-        .delete {
-            margin-top: 5px;
-            font-size: 0.8rem;
-            @include btn-popup;
-            color: var(--redColor);
-            background-color: var(--btnColor);
+        div {
+            .modify {
+                @include btn-popup;
+                margin-top: 5px;
+                font-size: 0.8rem;
+                color: var(--blueColor);
+                background-color: var(--btnColor);
+            }
+            .delete {
+                margin-top: 5px;
+                font-size: 0.8rem;
+                @include btn-popup;
+                color: var(--redColor);
+                background-color: var(--btnColor);
+            }
         }
     }
 }

@@ -1,11 +1,13 @@
 <?php
-require_once('../../functions.php');
-require_once('../../models/GenericModel.php');
-require_once('../../database/DBConnection.php');
-$model = new GenericModel($db, 'classes');
-$records = $model->getAll();
-$start=0;
-$length=25;
+    require_once('../../functions.php');
+    require_once('../../models/GenericModel.php');
+    require_once('../../database/DBConnection.php');
+    logout();
+    notconnected();
+    $model = new GenericModel($db, 'classes');
+    $records = $model->getAll();
+    $start=0;
+    $length=25;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -42,24 +44,23 @@ $length=25;
                 <h2>Classes</h2>
                 <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequuntur iste impedit, possimus tempore reiciendis veniam nesciunt molestiae facere eligendi aliquid iusto, voluptas voluptates blanditiis ipsum aut est odit nulla cupiditate.</p>
             </div>
+
             <div class="all-classes">
                 <?php
                     foreach($records as $record){
                         ?>
-                            <div href="protectected_interface.php?class-id=<?= $record->class_id?>" class="items">
+                            <div  class="classe-content">
                                 <strong>0<?= $record->class_id?></strong>
                                 <p><?= $record->class_name?></p>
                                 <span><?=substr($record->description,$start,$length) ?>...</span>
-                                <div>
-                                    <a class="details" href="../connect.html">View in details</a>
+                                <div class="icons-view">
+                                    <a class="details" href="connect.php?class-id=<?= $record->class_id?>">View in details</a>
                                     <i class="fa-solid fa-arrow-right"></i>
                                 </div>
                             </div>
                         <?php
                     }
                 ?>
-
-               
             </div>
         </div>
     </section>

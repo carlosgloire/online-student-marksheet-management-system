@@ -4,47 +4,55 @@
     gap: 15px;
     -webkit-column-gap: 15px;
     margin-top: 40px;
-    margin-bottom: 40px;
     grid-template-columns: auto auto auto;
-    .items {
-        display: grid;
+    .classe-content {
         padding: 20px 20px;
-        box-shadow: 0px 10px 15px var(--grayShadow);
-        &:hover {
-            box-shadow: 0px 20px 25px var(--grayShadow);
-        }
+        box-shadow: 0px 5px 10px var(--grayShadow);
+        color: var(--blackColor);
         strong {
-            font-size: 0.9rem;
-            justify-self: right;
+            display: flex;
+            justify-content: flex-end;
             color: var(--blueColor);
         }
         p {
-            text-transform: uppercase;
-            font-weight: 600;
+            margin-bottom: 10px;
         }
-        div {
+        .icons-view {
+            padding: 5px 10px;
             width: fit-content;
-            display: flex;
-            align-items: center;
-            gap: 3px;
-            padding: 7px 12px;
             font-size: 0.8rem;
-            margin-top: 10px;
-            -webkit-column-gap: 3px;
             transition: 0.8s;
-            transition-delay: width 0.2s;
+            transition-delay: 0.2s;
             border: 1px dashed var(--blueColor);
             a,
             i {
                 color: var(--blueColor);
             }
             &:hover {
-                transform: translateY(0.1rem);
-                border: 1px solid var(--blueColor);
                 background-color: var(--blueColor);
+                border: 1px solid var(--blueColor);
                 a,
                 i {
                     color: var(--whiteColor);
+                }
+            }
+        }
+        .click-div {
+            display: flex;
+            gap: 5px;
+            -webkit-column-gap: 5px;
+            align-items: center;
+            color: var(--blueColor);
+            margin-top: 10px;
+            justify-content: flex-start;
+            animation-delay: 5s;
+            animation: animate 5s linear infinite;
+            @keyframes animate {
+                0% {
+                    transform: translateY(-5px);
+                }
+                100% {
+                    transform: translateY(5px);
                 }
             }
         }

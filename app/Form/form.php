@@ -3,13 +3,16 @@
         private $fields = array();
         public $title;
         private $value ;
+        private $btnName;
         public function addField($type, $name, $label,$placeholder) {
             $this->fields[] = array("type" => $type, "name" => $name, "label" => $label,"placeholder"=>$placeholder);
         }
-       public function __construct($title,$value)
+       
+       public function __construct(string $title,string $value, string $btnName)
        {
             $this->title=$title;
             $this->value=$value;
+            $this->btnName=$btnName;
        }
        
         public function displayForm() {
@@ -30,16 +33,43 @@
                 
                 ?>
                     <div class="btn">
-                        <button type="submit" name="<?= $this->value?>">Add new form tutor</button>
+                        <button type="submit" name="<?=$this->btnName?>"><?=$this->value?></button>
                     </div>
             </form>
             <?php
         }
+        public function signin_signup_form() {
+            ?>
+            <h3><?=$this->title?></h3>
+           <form action="" method="post">
+                    <div class="input-content">
+                        <div class="all-inputs">
+                            <i class="fa-solid fa-envelope"></i>
+                            <input type="email" placeholder="Enter your email" required>
+                        </div>
+                    </div>
+                    <div class="input-content">
+                        <div class="all-inputs">
+                            <i class="fa-solid fa-lock"></i>
+                            <input class="password" type="password" placeholder="Enter your password" required>
+                            <div class="eyes">
+                                <i class="fa-solid fa-eye open"></i>
+                                <i class="fa-solid fa-eye-slash close hidden"></i>
+    
+                            </div>
+                        </div>
+                    </div>
+                    <div class="forgotten-password">
+                        <p>Forgotten password</p>
+                        <a href="#">click here</a>
+                    </div>
+                    <div class="btn">
+                        <button type="submit" name="<?= $this->btnName?>"><?= $this->value?></button>
+                    </div>
+                </form>
+            <?php
+        }
     }
 
-   
-
-    
-    ?>
 
 

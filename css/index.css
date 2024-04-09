@@ -284,11 +284,6 @@ label {
   background-color: var(--whiteColor);
 }
 
-.error {
-  color: red;
-  font-size: 0.8rem;
-}
-
 .btn {
   margin-top: 25px;
   margin-bottom: 20px;
@@ -309,52 +304,60 @@ label {
   gap: 15px;
   -webkit-column-gap: 15px;
   margin-top: 40px;
-  margin-bottom: 40px;
   grid-template-columns: auto auto auto;
 }
-.all-classes .items {
-  display: grid;
+.all-classes .classe-content {
   padding: 20px 20px;
-  box-shadow: 0px 10px 15px var(--grayShadow);
+  box-shadow: 0px 5px 10px var(--grayShadow);
+  color: var(--blackColor);
 }
-.all-classes .items:hover {
-  box-shadow: 0px 20px 25px var(--grayShadow);
-}
-.all-classes .items strong {
-  font-size: 0.9rem;
-  justify-self: right;
+.all-classes .classe-content strong {
+  display: flex;
+  justify-content: flex-end;
   color: var(--blueColor);
 }
-.all-classes .items p {
-  text-transform: uppercase;
-  font-weight: 600;
+.all-classes .classe-content p {
+  margin-bottom: 10px;
 }
-.all-classes .items div {
+.all-classes .classe-content .icons-view {
+  padding: 5px 10px;
   width: -moz-fit-content;
   width: fit-content;
-  display: flex;
-  align-items: center;
-  gap: 3px;
-  padding: 7px 12px;
   font-size: 0.8rem;
-  margin-top: 10px;
-  -webkit-column-gap: 3px;
   transition: 0.8s;
-  transition-delay: width 0.2s;
+  transition-delay: 0.2s;
   border: 1px dashed var(--blueColor);
 }
-.all-classes .items div a,
-.all-classes .items div i {
+.all-classes .classe-content .icons-view a,
+.all-classes .classe-content .icons-view i {
   color: var(--blueColor);
 }
-.all-classes .items div:hover {
-  transform: translateY(0.1rem);
-  border: 1px solid var(--blueColor);
+.all-classes .classe-content .icons-view:hover {
   background-color: var(--blueColor);
+  border: 1px solid var(--blueColor);
 }
-.all-classes .items div:hover a,
-.all-classes .items div:hover i {
+.all-classes .classe-content .icons-view:hover a,
+.all-classes .classe-content .icons-view:hover i {
   color: var(--whiteColor);
+}
+.all-classes .classe-content .click-div {
+  display: flex;
+  gap: 5px;
+  -webkit-column-gap: 5px;
+  align-items: center;
+  color: var(--blueColor);
+  margin-top: 10px;
+  justify-content: flex-start;
+  animation-delay: 5s;
+  animation: animate 5s linear infinite;
+}
+@keyframes animate {
+  0% {
+    transform: translateY(-5px);
+  }
+  100% {
+    transform: translateY(5px);
+  }
 }
 
 .add-student {
@@ -608,7 +611,7 @@ label {
   -o-object-fit: cover;
      object-fit: cover;
 }
-.titulaire-item .item .modify {
+.titulaire-item .item div .modify {
   cursor: pointer;
   margin-left: 5px;
   padding: 8px 10px;
@@ -619,7 +622,7 @@ label {
   color: var(--blueColor);
   background-color: var(--btnColor);
 }
-.titulaire-item .item .delete {
+.titulaire-item .item div .delete {
   margin-top: 5px;
   font-size: 0.8rem;
   cursor: pointer;
