@@ -1,4 +1,5 @@
-    // JavaScript code
+<script>
+        // JavaScript code
     const deleteButtons = document.querySelectorAll('.delete');
     deleteButtons.forEach(button => {
         button.addEventListener('click', function(event) {
@@ -13,3 +14,4 @@
             });
         });
     });
+</script>

@@ -8,7 +8,7 @@
 </head>
 
 <body>
-
+ <p>click <a href="pages/login.php"> here to log in</a></p>
 </body>
 
 </html>

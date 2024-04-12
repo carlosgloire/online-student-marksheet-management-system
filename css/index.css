@@ -496,6 +496,16 @@ label {
   background-color: var(--whiteColor);
 }
 
+.error, .success {
+  text-align: center;
+  font-size: 0.8rem;
+  color: red;
+}
+
+.success {
+  color: green;
+}
+
 /********** this is for adding a new class **********/
 .design-modules .add-module {
   display: flex;
@@ -632,4 +642,14 @@ label {
   border-radius: 3px;
   color: var(--redColor);
   background-color: var(--btnColor);
+}
+
+.popup-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.popup-container span {
+  font-weight: bold;
 }/*# sourceMappingURL=index.css.map */

@@ -1,10 +1,12 @@
 <?php
-require_once('../../app/Form/form.php');
-$form= new Form("Add a Form tutor","Add Form tutor","add");
-$form->addField("text","fname","First name","Enter First name");
-$form->addField("text","Lname","Last name","Enter Last name");
-$form->addField("email","email","Email","Enter email");
-$form->addField("file","photo","Tutor profile","");
+   session_start();
+   require_once('../../functions.php');
+   require_once('../../models/GenericModel.php');
+   require_once('../../database/DBConnection.php');
+   notconnected_principal();
+   verifysession_principal();
+require_once('../../controllers/principal/addFormteacher.controller.php');
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,15 +22,17 @@ $form->addField("file","photo","Tutor profile","");
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer"
     />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add New Form tutor</title>
+    <title>Add New Form teacher</title>
 </head>
 
 <body>
     <section class="connect-section">
         <div class="connect">
-            <?= $form->displayForm()?>
+            <?= $form->displayForm($error)?>
+            <p class="error"><?= $error?></p><p class="success"><?= $success ?></p>
         </div>
     </section>
+   
 </body>
 
 </html>

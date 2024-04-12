@@ -4,15 +4,12 @@
                     <i class="fa-regular fa-copyright"></i>
                     <p>Classes</p>
                 </a>
-                <a href="../addMarks/classes.html">
+                <a href="../modules/modules.php">
                     <i class="fa-brands fa-maxcdn"></i>
-                    <p>Add marks</p>
+                    <p>Modules</p>
                 </a>
-                <a href="../marks/classes.html">
-                    <i class="fa-brands fa-signal-messenger"></i>
-                    <p>Marks</p>
-                </a>
-                <a href="../principal/tutor.php">
+
+                <a href="../principal/Formteacher.php">
                     <i class="fa-solid fa-gear"></i>
                     <p>Principal</p>
                 </a>

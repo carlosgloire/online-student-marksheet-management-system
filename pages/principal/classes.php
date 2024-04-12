@@ -1,10 +1,11 @@
 <?php
+      
     session_start();
     require_once('../../functions.php');
     require_once('../../models/GenericModel.php');
     require_once('../../database/DBConnection.php');
-    logout();
-    notconnected();
+    notconnected_principal();
+    verifysession_principal();
     $model = new GenericModel($db, 'classes');
     $records = $model->getAll();
     $start=0;
@@ -23,7 +24,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer"
     />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Add a new form teacher</title>
 </head>
 
 <body>
@@ -34,8 +35,7 @@
         <?php require_once('../navbar.php')?>
         <div class="class-content">
             <div class="title">
-                <h2>Classes</h2>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequuntur iste impedit, possimus tempore reiciendis veniam nesciunt molestiae facere eligendi aliquid iusto, voluptas voluptates blanditiis ipsum aut est odit nulla cupiditate.</p>
+                <h2>Add a form teacher in a class</h2>
             </div>
 
             <div class="all-classes">
@@ -45,9 +45,8 @@
                             <div  class="classe-content">
                                 <strong>0<?= $record->class_id?></strong>
                                 <p><?= $record->class_name?></p>
-                                <span><?=substr($record->description,$start,$length) ?>...</span>
                                 <div class="icons-view">
-                                    <a class="details" href="connect.php?class-id=<?= $record->class_id?>">View in details</a>
+                                    <a class="details" href="addNewform_teacher.php?class_id=<?= $record->class_id?>">Click here to Add</a>
                                     <i class="fa-solid fa-arrow-right"></i>
                                 </div>
                             </div>

@@ -4,20 +4,21 @@
         public $title;
         private $value ;
         private $btnName;
+        private $datastored;
         public function addField($type, $name, $label,$placeholder) {
             $this->fields[] = array("type" => $type, "name" => $name, "label" => $label,"placeholder"=>$placeholder);
         }
        
-       public function __construct(string $title,string $value, string $btnName)
+       public function __construct(string $title, string $btnName,string $value)
        {
             $this->title=$title;
             $this->value=$value;
             $this->btnName=$btnName;
        }
        
-        public function displayForm() {
+        public function displayForm($errror) {
             ?>
-            <form method="post">
+            <form action="" method="post" enctype="multipart/form-data">
                     <h3 ><?= $this->title?></h3>    
                 <?php
                     foreach ($this->fields as $field) {
@@ -25,7 +26,7 @@
                         <div class="input-content">
                             <div class="all-inputs">
                                 <label for="<?= $field["name"] ?>"> <?= $field["label"] ?>:</label>
-                                <input  type="<?= $field["type"] ?>" id="<?= $field["name"] ?>" name="<?= $field["name"] ?>" placeholder="<?= $field["placeholder"] ?>" required>
+                                <input  type="<?= $field["type"] ?>" id="<?= $field["name"] ?>"  name="<?= $field["name"] ?>" placeholder="<?= isset($_POST[($field['name'])]) ? ($_POST[($field['name'])]): $field['placeholder'] ?>"  required>
                             </div>
                         </div>
                         <?php
@@ -45,13 +46,13 @@
                     <div class="input-content">
                         <div class="all-inputs">
                             <i class="fa-solid fa-envelope"></i>
-                            <input type="email" placeholder="Enter your email" required>
+                            <input type="email" name="email" placeholder="Enter your email" required>
                         </div>
                     </div>
                     <div class="input-content">
                         <div class="all-inputs">
                             <i class="fa-solid fa-lock"></i>
-                            <input class="password" type="password" placeholder="Enter your password" required>
+                            <input class="password" name="password" type="password" placeholder="Enter your password" required>
                             <div class="eyes">
                                 <i class="fa-solid fa-eye open"></i>
                                 <i class="fa-solid fa-eye-slash close hidden"></i>
@@ -61,7 +62,7 @@
                     </div>
                     <div class="forgotten-password">
                         <p>Forgotten password</p>
-                        <a href="#">click here</a>
+                        <a href="#">click here </a>
                     </div>
                     <div class="btn">
                         <button type="submit" name="<?= $this->btnName?>"><?= $this->value?></button>
@@ -69,6 +70,7 @@
                 </form>
             <?php
         }
+   
     }
 
 

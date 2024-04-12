@@ -10,3 +10,12 @@
         background-color: var(--whiteColor);
     }
 }
+.error{
+    text-align: center;
+    font-size: 0.8rem;
+    color: red;
+}
+.success{
+    @extend .error;
+    color: green;
+}

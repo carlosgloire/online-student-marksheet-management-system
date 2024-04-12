@@ -1,7 +1,6 @@
 <?php
-require_once('../../app/Form/form.php');
-$form= new Form("Sign in as principal","signin", "Sign in");
-
+session_start();
+require_once('../../controllers/principal/connectController.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,13 +16,14 @@ $form= new Form("Sign in as principal","signin", "Sign in");
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer"
     />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add New Form tutor</title>
+    <title>sign in</title>
 </head>
 
 <body>
     <section class="connect-section">
         <div class="connect">
             <?= $form->signin_signup_form()?>
+            <p class="error"><?= $error?></p>
         </div>
     </section>
 </body>
