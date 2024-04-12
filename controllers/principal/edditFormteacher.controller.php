@@ -5,10 +5,19 @@ $error = null;
 require_once('../../database/DBConnection.php');
 
 if (isset($_GET['tutor_id']) && !empty($_GET['tutor_id'])) {
+    //Getting the form teacher id
     $id = $_GET['tutor_id'];
     $request = $db->prepare("SELECT * FROM form_tutors WHERE tutor_id = ?");
     $request->execute([$id]);
     $stmt = $request->fetch();
+    if(isset($_POST['classes'])){
+        $class_id = htmlspecialchars($_POST['classes']);
+       // Check if a form teacher is already assigned to this class
+        $existing_teacher_query = $db->prepare('SELECT * FROM form_tutors WHERE class_id = ?');
+        $existing_teacher_query->execute(array($class_id));
+        $existing_teacher = $existing_teacher_query->fetch();
+    }        
+
 
     if ($stmt) {
         $fname_fetched = $stmt['fname'];
@@ -17,7 +26,7 @@ if (isset($_GET['tutor_id']) && !empty($_GET['tutor_id'])) {
         $profile_photo_fetched = $stmt['profile_photo'];
         $class_id_fetched = $stmt['class_id'];
     } else {
-        $error = "Tutor not found";
+        $error = "Form teacher not found";
     }
 }
 
@@ -47,7 +56,9 @@ if (isset($_POST['modify'])) {
             $error = "Error while uploading";
         }
     }
-
+    if ($existing_teacher) {
+        $error = "There is a form teacher already assigned to this class!";
+    }
     // Check if a new class is selected
     if (!empty($_POST['classes'])) {
         $class = htmlspecialchars($_POST['classes']);
@@ -59,8 +70,9 @@ if (isset($_POST['modify'])) {
             $error = "Please select the class!!";
         }
     }
-
-    if (empty($error)) {
+       
+    if(empty($error)){
+       
         // Update form_tutors with the new data
         $updateTeacher = $db->prepare('UPDATE form_tutors SET fname = ?, lname = ?, email = ?, profile_photo = ?, class_id = ? WHERE tutor_id = ?');
         $updateTeacher->execute([$fname, $lname, $email, $filename, $class, $id]);

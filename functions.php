@@ -51,16 +51,15 @@ if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 
 $_SESSION['LAST_ACTIVITY'] = time();
 }
 
-function popup_delete($record){
-       
+function popup_delete($record,$function,$message,$fname,$lname,$id){  
     ?> 
       <div class="popup hidden-popup">
         <div class="popup-container">
-            <h4>Dear principal,</h4>
-            <p>Are you sure you want to remove <br><span><?= $record->fname." ".$record->lname?></span> From your system?</p>
+            <h4>Dear <?= $function?>,</h4>
+            <p><?= $message ?><br><span><?= $record->$fname." ".$record->$lname?></span> From your system?</p>
             <div class="popup-btn">
                 <button class="cancel-popup">Cancel</button>
-                <a href="delete_formTeacher.php?tutor_id=<?= $record->tutor_id?>" class="delete-popup">Delete</a>
+                <a href="delete_formTeacher.php?tutor_id=<?= $record->$id?>" class="delete-popup">Delete</a>
             </div>
         </div>
     </div>

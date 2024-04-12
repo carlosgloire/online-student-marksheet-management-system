@@ -50,7 +50,7 @@
                 <div class="input-content">
                     <div class="all-inputs">
                         <label for="email">Class:</label>
-                       <select name="classes" id="class">
+                       <select name="classes" id="classes">
                         <option value=" ">Select the class</option>
                        <?php
                             $query = $db->prepare("SELECT * FROM classes ORDER BY class_id ASC");

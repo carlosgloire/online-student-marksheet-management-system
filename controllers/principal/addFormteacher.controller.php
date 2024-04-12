@@ -51,7 +51,7 @@ if (isset($_POST['add'])) {
         $existing_teacher = $existing_teacher_query->fetch();
 
         if ($existing_teacher) {
-            $error = "There is a form teacher already assigned for this class!";
+            $error = "There is a form teacher already assigned to this class!";
         } else {
             if (!move_uploaded_file($tempname, $folder)) {
                 $error = "Error while uploading";

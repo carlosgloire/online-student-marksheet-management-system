@@ -59,8 +59,8 @@
                                             <h4><?=$record->fname." ".$record->lname?></h4>
                                             <p><?= $record->class_name?></p>
                                             <a class="modify" href="./editTitulaire.php?tutor_id=<?=$record->tutor_id?>"><i class="fa-solid fa-pencil"></i></a>
-                                            <button class="delete" data-formteacher-id="<?php echo $row['id']; ?>"><i class="fa-solid fa-trash-can"></i></button>
-                                            <?= popup_delete($record)?>
+                                            <button class="delete" data-formteacher-id="<?= $record->tutor_id ?>"><i class="fa-solid fa-trash-can"></i></button>
+                                            <?= popup_delete($record,"principal","are you sure you want to remove","fname","lname","tutor_id")?>
                                         </div>
                                     </div>
                                 </div>
