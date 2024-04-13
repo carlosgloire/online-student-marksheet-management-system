@@ -1,9 +1,10 @@
-    // JavaScript code
-    const deleteButtons = document.querySelectorAll('.delete');
+
+        // JavaScript code
+    const deleteButtons = document.querySelectorAll('.product');
     deleteButtons.forEach(button => {
         button.addEventListener('click', function(event) {
             event.preventDefault(); // Prevent the default link behavior
-            const productId = this.getAttribute('data-product-id');
+            const productId = this.getAttribute('data-formteacher-id');
             const popup = this.nextElementSibling;
             popup.style.display = 'block';
 

@@ -26,7 +26,9 @@ if (isset($_GET['tutor_id']) && !empty($_GET['tutor_id'])) {
         $profile_photo_fetched = $stmt['profile_photo'];
         $class_id_fetched = $stmt['class_id'];
     } else {
-        $error = "Form teacher not found";
+        echo '<script>alert("Form teacher not found");</script>';
+        echo '<script>window.location.href="Formteacher.php";</script>';
+        exit;
     }
 }
 
@@ -34,10 +36,12 @@ if (isset($_POST['modify'])) {
     $fname = htmlspecialchars($_POST['fname']);
     $lname = htmlspecialchars($_POST['lname']);
     $email = htmlspecialchars($_POST['email']);
-
-    // Set default values for filename and class
+   
     $filename = $stmt['profile_photo']; // Default to previous profile photo
-    $class = $stmt['class_id']; // Default to previous class_id
+     // Check if a form teacher name is already assigned to this class
+     $existing_teachername_query = $db->prepare('SELECT fname,lname FROM form_tutors WHERE fname = ? AND lname = ?');
+     $existing_teachername_query->execute(array($fname,$lname));
+     $existing_teachername = $existing_teachername_query->fetch();
 
     // Check if a new file is uploaded
     if (!empty($_FILES['uploadfile']['name'])) {
@@ -47,7 +51,7 @@ if (isset($_POST['modify'])) {
         $folder = "./profile_photo/" . $filename;
         $allowedExtensions = ['png', 'jpg', 'jpeg'];
         $pattern = '/\.(' . implode('|', $allowedExtensions) . ')$/i';
-
+        
         if (!preg_match($pattern, $filename)) {
             $error = "Your file must be in 'jpg', 'jpeg' or 'png' format";
         } elseif ($filesize > 5000000) {
@@ -56,9 +60,11 @@ if (isset($_POST['modify'])) {
             $error = "Error while uploading";
         }
     }
-    if ($existing_teacher) {
-        $error = "There is a form teacher already assigned to this class!";
+    if ($existing_teacher AND $existing_teachername) {
+        
+        $error = "There is a form teacher already assigned to this class and <br/> with the same name you provided!";
     }
+   
     // Check if a new class is selected
     if (!empty($_POST['classes'])) {
         $class = htmlspecialchars($_POST['classes']);

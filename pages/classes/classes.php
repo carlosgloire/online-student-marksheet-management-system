@@ -27,11 +27,11 @@
 </head>
 
 <body>
-     <!-- this is the menu bar  of our system-->
-     <?php require_once('../header.php')?>
-    <section class="principal-Section">
-        <!-- this is the nav bar for the left side of our system-->
-        <?php require_once('../navbar.php')?>
+       <!-- this is the menu bar  of our system-->
+       <?php require_once('../header.php')?>
+       <section class="principal-Section">
+           <!-- this is the nav bar for the left side of our system-->
+           <?php require_once('../navbar.php')?>
         <div class="class-content">
             <div class="title">
                 <h2>Classes</h2>
@@ -39,21 +39,25 @@
             </div>
 
             <div class="all-classes">
-                <?php
-                    foreach($records as $record){
-                        ?>
-                            <div  class="classe-content">
-                                <strong>0<?= $record->class_id?></strong>
-                                <p><?= $record->class_name?></p>
-                                <span><?=substr($record->description,$start,$length) ?>...</span>
-                                <div class="icons-view">
-                                    <a class="details" href="connect.php?class-id=<?= $record->class_id?>">View in details</a>
-                                    <i class="fa-solid fa-arrow-right"></i>
+
+                <div class="all-classes">
+                    <?php
+                        foreach($records as $record){
+                            ?>
+                                <div  class="classe-content">
+                                    <strong>0<?= $record->class_id?></strong>
+                                    <h4><?= $record->class_name?></h4>
+                                    <p>The class has 20 strudents</p>
+                                    <p>This class contain 15 modules</p>
+                                    <div class="class-titular">
+                                        <p>Titular: </p>
+                                        <span>Anicet CHIZA</span>
+                                    </div>
                                 </div>
-                            </div>
-                        <?php
-                    }
-                ?>
+                            <?php
+                        }
+                    ?>
+                </div>
             </div>
         </div>
     </section>

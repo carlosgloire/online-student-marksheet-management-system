@@ -61,15 +61,17 @@
             <?php
                 if($request->rowCount() > 0){
                     while( $students = $request->fetch(PDO::FETCH_ASSOC)){
+                        
                         ?>
                           <div class="list-student">
                             <div class="student-identity">
-                                <p><?= $students['fname']." ".$students['lname']?></p>
+                                <div class="stdt"><p class="regnumber"><?=$students['regnumber'] ?></p></p><?=$students['fname']." ".$students['lname']?><p></div>
                                 <div>
                                     <a class="modify" href="./edit_student.php?student_id=<?= $students['student_id']?>"><i class="fa-solid fa-pencil"></i></a>
-                                    <button class="delete"><i class="fa-solid fa-trash-can"></i></button>
+                                    <button  class="delete" data-formteacher-id="<?= $students['student_id'] ?>"><i class="fa-solid fa-trash-can"></i></button>
                                 </div>
                             </div>
+                            <?= popup_delete2("principal","Are you sure you want to remove",$students['fname'],$students['lname'],$students['student_id'])?>
                         </div>
                         <?php
                     }
@@ -83,27 +85,15 @@
             ?>
         </div>
     </section>
-
-    <div class="popup hidden-popup">
-        <div class="popup-container">
-            <h4>Dear user,</h4>
-            <p>Do you want to delete this student</p>
-            <p>into your system?</p>
-            <div class="popup-btn">
-                <button class="cancel-popup">Cancel</button>
-                <button class="delete-popup">Delete</button>
-            </div>
-        </div>
-    </div>
-
+   
+                
+  
     <div class="hidden-popup"></div>
 
     <!-- This part contain the footer of our system -->
     <footer>
         <p>©Marksheet Management System</p>
     </footer>
-
-    <script src="../../../javascript/popup.js"></script>
 </body>
-
 </html>
+<?php require_once('../../../javascript/popupdelete_formTeacher.php');

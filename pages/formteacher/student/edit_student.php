@@ -1,3 +1,12 @@
+<?php
+   session_start();
+   require_once('../../../database/DBConnection.php');
+   require_once('../../../functions.php');
+   require_once('../../../models/GenericModel.php');
+   require_once('../../../database/DBConnection.php');
+   require_once('../../../controllers/formteacher/editstudent.controller.php');
+   verifysession();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,22 +27,27 @@
     <section class="connect-section">
         <div class="connect">
             <h3>Edit Student</h3>
-            <form action="">
+            <form action="" method="post" >
                 <div class="input-content">
+                <div class="all-inputs">
+                        <label for="name">Registration number:</label>
+                        <input type="text" name="regnumber" placeholder="Enter first name" value="<?=$regnumber_fetched?>" required>
+                    </div>
                     <div class="all-inputs">
                         <label for="name">First name:</label>
-                        <input type="text" placeholder="Enter first name" required>
+                        <input type="text" name="fname" placeholder="Enter first name" value="<?=$fname_fetched?>" required>
                     </div>
                 </div>
                 <div class="input-content">
                     <div class="all-inputs">
                         <label for="name">Last name:</label>
-                        <input type="text" placeholder="Enter last name" required>
+                        <input type="text" name="lname" placeholder="Enter last name" value="<?=$lname_fetched?>"  required>
                     </div>
                 </div>
                 <div class="btn">
-                    <button type="submit">Save change</button>
+                    <button type="submit" name="modify">Save change</button>
                 </div>
+                </p><p class="success"><?= $success ?><p class="error"><?= $error ?></p>
             </form>
         </div>
     </section>

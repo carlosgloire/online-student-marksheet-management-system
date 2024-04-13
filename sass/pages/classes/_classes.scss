@@ -15,45 +15,42 @@
             color: var(--blueColor);
         }
         p {
-            margin-bottom: 10px;
+            font-size: 0.9rem;
         }
-        .icons-view {
-            padding: 5px 10px;
-            width: fit-content;
-            font-size: 0.8rem;
-            transition: 0.8s;
-            transition-delay: 0.2s;
-            border: 1px dashed var(--blueColor);
-            a,
-            i {
-                color: var(--blueColor);
-            }
-            &:hover {
-                background-color: var(--blueColor);
-                border: 1px solid var(--blueColor);
-                a,
-                i {
-                    color: var(--whiteColor);
-                }
-            }
-        }
-        .click-div {
+        .class-titular {
             display: flex;
             gap: 5px;
             -webkit-column-gap: 5px;
             align-items: center;
-            color: var(--blueColor);
             margin-top: 10px;
-            justify-content: flex-start;
-            animation-delay: 5s;
-            animation: animate 5s linear infinite;
-            @keyframes animate {
-                0% {
-                    transform: translateY(-5px);
-                }
-                100% {
-                    transform: translateY(5px);
-                }
+            color: var(--blueColor);
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+        &:hover {
+            transition: 0.8s;
+            transition-delay: 0.2s;
+            transform: translateY(10px);
+            box-shadow: 0px 15px 20px var(--grayShadow);
+        }
+    }
+    .icons-view {
+        padding: 5px 10px;
+        width: fit-content;
+        font-size: 0.8rem;
+        transition: 0.8s;
+        transition-delay: 0.2s;
+        border: 1px dashed var(--blueColor);
+        a,
+        i {
+            color: var(--blueColor);
+        }
+        &:hover {
+            background-color: var(--blueColor);
+            border: 1px solid var(--blueColor);
+            a,
+            i {
+                color: var(--whiteColor);
             }
         }
     }

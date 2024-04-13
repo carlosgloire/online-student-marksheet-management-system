@@ -25,15 +25,17 @@ class Joiningtables {
     protected $second_table;
     protected $pk;
     protected $fk;
-    public function __construct(PDO $pdo, $first_table,$second_table,$fk) {
+    protected $orderby;
+    public function __construct(PDO $pdo, $first_table,$second_table,$fk,$orderby) {
         $this->pdo = $pdo;
         $this->first_table = $first_table;
         $this->second_table = $second_table;
         $this->fk=$fk;
+        $this->orderby=$orderby;
     }
 
     public function getAll() {
-        $query = "SELECT ft.*, st.* FROM {$this->first_table} ft LEFT JOIN {$this->second_table} st ON st.{$this->fk} = ft.{$this->fk}";
+        $query = "SELECT ft.*, st.* FROM {$this->first_table} ft LEFT JOIN {$this->second_table} st ON st.{$this->fk} = ft.{$this->fk} ORDER BY st.{$this->orderby} ASC";
         $statement = $this->pdo->prepare($query);
         $statement->execute();
         return $statement->fetchAll(PDO::FETCH_OBJ);

@@ -317,9 +317,25 @@ label {
   color: var(--blueColor);
 }
 .all-classes .classe-content p {
-  margin-bottom: 10px;
+  font-size: 0.9rem;
 }
-.all-classes .classe-content .icons-view {
+.all-classes .classe-content .class-titular {
+  display: flex;
+  gap: 5px;
+  -webkit-column-gap: 5px;
+  align-items: center;
+  margin-top: 10px;
+  color: var(--blueColor);
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+.all-classes .classe-content:hover {
+  transition: 0.8s;
+  transition-delay: 0.2s;
+  transform: translateY(10px);
+  box-shadow: 0px 15px 20px var(--grayShadow);
+}
+.all-classes .icons-view {
   padding: 5px 10px;
   width: -moz-fit-content;
   width: fit-content;
@@ -328,36 +344,17 @@ label {
   transition-delay: 0.2s;
   border: 1px dashed var(--blueColor);
 }
-.all-classes .classe-content .icons-view a,
-.all-classes .classe-content .icons-view i {
+.all-classes .icons-view a,
+.all-classes .icons-view i {
   color: var(--blueColor);
 }
-.all-classes .classe-content .icons-view:hover {
+.all-classes .icons-view:hover {
   background-color: var(--blueColor);
   border: 1px solid var(--blueColor);
 }
-.all-classes .classe-content .icons-view:hover a,
-.all-classes .classe-content .icons-view:hover i {
+.all-classes .icons-view:hover a,
+.all-classes .icons-view:hover i {
   color: var(--whiteColor);
-}
-.all-classes .classe-content .click-div {
-  display: flex;
-  gap: 5px;
-  -webkit-column-gap: 5px;
-  align-items: center;
-  color: var(--blueColor);
-  margin-top: 10px;
-  justify-content: flex-start;
-  animation-delay: 5s;
-  animation: animate 5s linear infinite;
-}
-@keyframes animate {
-  0% {
-    transform: translateY(-5px);
-  }
-  100% {
-    transform: translateY(5px);
-  }
 }
 
 .add-student {
@@ -395,6 +392,12 @@ label {
   justify-content: space-between;
   padding: 18px;
   box-shadow: 0px 5px 10px var(--grayShadow);
+}
+.student-identity .stdt {
+  gap: 10px;
+}
+.student-identity .stdt .regnumber {
+  color: var(--blueColor);
 }
 .student-identity div {
   display: flex;

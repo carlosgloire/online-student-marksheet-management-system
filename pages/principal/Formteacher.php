@@ -7,7 +7,7 @@
      logout_principal();
      notconnected_principal();
      verifysession();
-     $model = new Joiningtables($db, 'form_tutors',"classes","class_id");
+     $model = new Joiningtables($db, 'form_tutors',"classes","class_id","class_id");
      $records = $model->getAll();
    
 ?>
@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer"
     />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Titulaire</title>
+    <title>List of form teachers</title>
 </head>
 
 <body>
@@ -60,7 +60,7 @@
                                             <p><?= $record->class_name?></p>
                                             <a class="modify" href="./editTitulaire.php?tutor_id=<?=$record->tutor_id?>"><i class="fa-solid fa-pencil"></i></a>
                                             <button class="delete" data-formteacher-id="<?= $record->tutor_id ?>"><i class="fa-solid fa-trash-can"></i></button>
-                                            <?= popup_delete($record,"principal","are you sure you want to remove","fname","lname","tutor_id")?>
+                                            <?= popup_delete($record,"principal","Are you sure you want to remove","fname","lname","tutor_id")?>
                                         </div>
                                     </div>
                                 </div>
@@ -78,10 +78,6 @@
         </div>
     </section>
 
-    <!-- this is a popup for delete a module and for editing a module -->
-   
-
-    <div class="hidden-popup"></div>
 
     <!-- This part contain the footer of our system -->
     <footer>
@@ -89,20 +85,4 @@
     </footer>
 </body>
 </html>
-<script>
-        // JavaScript code
-    const deleteButtons = document.querySelectorAll('.delete');
-    deleteButtons.forEach(button => {
-        button.addEventListener('click', function(event) {
-            event.preventDefault(); // Prevent the default link behavior
-            const productId = this.getAttribute('data-formteacher-id');
-            const popup = this.nextElementSibling;
-            popup.style.display = 'block';
-
-            const closePopup = popup.querySelector('.cancel-popup');
-            closePopup.addEventListener('click', function() {
-                popup.style.display = 'none';
-            });
-        });
-    });
-</script>
+<?php require_once('../../javascript/popupdelete_formTeacher.php')?>
