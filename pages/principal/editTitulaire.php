@@ -4,7 +4,7 @@
      require_once('../../functions.php');
      require_once('../../database/DBConnection.php');
      notconnected_principal();
-     verifysession_principal();
+     verifysession();
      require_once('../../controllers/principal/edditFormteacher.controller.php');
 
 ?>

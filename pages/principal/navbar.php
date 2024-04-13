@@ -1,10 +1,11 @@
+<!-- this is the nav bar for the left side of our system-->
 <nav>
     <div class="nav-content">
-        <a class="home hover" href="../classes/classes.php">
+        <a href="../classes/classes.php">
             <i class="fa-regular fa-copyright"></i>
             <p>Classes</p>
         </a>
-        <a href="../principal/Formteacher.php">
+        <a class="home hover" href="Formteacher.php">
             <i class="fa-solid fa-gear"></i>
             <p>Principal</p>
         </a>

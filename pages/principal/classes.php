@@ -5,7 +5,7 @@
     require_once('../../models/GenericModel.php');
     require_once('../../database/DBConnection.php');
     notconnected_principal();
-    verifysession_principal();
+    verifysession();
     $model = new GenericModel($db, 'classes');
     $records = $model->getAll();
     $start=0;

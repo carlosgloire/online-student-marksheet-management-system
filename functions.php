@@ -7,6 +7,7 @@ function logout(){
         exit();
     }
 }
+//Function to gout the principal
 function logout_principal(){
     if(isset($_POST['logout'])){
         unset($_SESSION['email']);
@@ -15,6 +16,7 @@ function logout_principal(){
         exit();
     }
 }
+//Function to check if the principal is connected
 function notconnected(){
     if (! isset($_SESSION['admin'])) {
         // Redirect to the login page if not logged in
@@ -23,6 +25,33 @@ function notconnected(){
     }
 }
 
+//Function to gout the principal
+function logout_formteacher(){
+    if(isset($_POST['logout'])){
+        unset($_SESSION['email_formteacher']);
+        unset($_SESSION['password_formteacher']);
+        header('location: connect.php');
+        exit();
+    }
+}
+//Function to gout the principal
+function logout_formteacher2(){
+    if(isset($_POST['logout'])){
+        unset($_SESSION['email_formteacher']);
+        unset($_SESSION['password_formteacher']);
+        header('location: ../connect.php');
+        exit();
+    }
+}
+
+//Function to check if the principal is connected
+function notconnected_formteacher(){
+    if (! isset($_SESSION['email_formteacher']) AND ! isset($_SESSION['password_formteacher'])) {
+        // Redirect to the login page if not logged in
+        header("Location: connect.php");
+        exit();
+    }
+}
 //principal page
 
 
@@ -34,7 +63,7 @@ function notconnected_principal(){
     }
 }
 //Function to check session expiration
-function verifysession_principal(){
+function verifysession(){
     // Set the session expiration time
 $expiration = 20* 60; // 24 hours of activity
 

@@ -6,7 +6,7 @@
      require_once('delete_formTeacher.php');
      logout_principal();
      notconnected_principal();
-     verifysession_principal();
+     verifysession();
      $model = new Joiningtables($db, 'form_tutors',"classes","class_id");
      $records = $model->getAll();
    
@@ -32,7 +32,7 @@
      <?php require_once('../header.php')?>
     <section class="principal-Section">
         <!-- this is the nav bar for the left side of our system-->
-        <?php require_once('../navbar.php')?>
+        <?php require_once('navbar.php')?>
         <!-- this div contain all the titulaires of different classes -->
         <div class="titulaire-container">
             <h2>All the form teachers</h2>

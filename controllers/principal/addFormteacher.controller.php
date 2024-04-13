@@ -23,8 +23,8 @@ if (isset($_POST['add'])) {
     $fname = htmlspecialchars($_POST['fname']);
     $lname = htmlspecialchars($_POST['lname']);
     $email = htmlspecialchars($_POST['email']);
-    $password = htmlspecialchars(password_hash($_POST['password'], PASSWORD_BCRYPT));
-
+    $password = htmlspecialchars($_POST['password']);
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
     $filename = $_FILES["uploadfile"]["name"];
     $filesize = $_FILES["uploadfile"]["size"];
     $tempname = $_FILES["uploadfile"]["tmp_name"];
@@ -32,6 +32,10 @@ if (isset($_POST['add'])) {
     $allowedExtensions = ['png', 'jpg', 'jpeg'];
     $pattern = '/\.(' . implode('|', $allowedExtensions) . ')$/i';
 
+    // Check if a form teacher name is already assigned to this class
+    $existing_teachername_query = $db->prepare('SELECT fname,lname FROM form_tutors WHERE fname = ? AND lname = ?');
+    $existing_teachername_query->execute(array($fname,$lname));
+    $existing_teachername = $existing_teachername_query->fetch();
     // Validate uploaded file
     if (!preg_match($pattern, $_FILES['uploadfile']['name']) && !empty($_FILES['uploadfile']['name'])) {
         $error = "Your file must be in \"jpg, jpeg or png\" format";
@@ -52,20 +56,28 @@ if (isset($_POST['add'])) {
 
         if ($existing_teacher) {
             $error = "There is a form teacher already assigned to this class!";
-        } else {
+        } 
+       
+        else {
             if (!move_uploaded_file($tempname, $folder)) {
                 $error = "Error while uploading";
             } else {
-                // Insert the new form tutor
-                $query = $db->prepare('INSERT INTO form_tutors (fname, lname, email, profile_photo, password, class_id) VALUES (:fname, :lname, :email, :profile_photo, :password, :class_id)');
-                $query->bindParam(':fname', $fname);
-                $query->bindParam(':lname', $lname);
-                $query->bindParam(':email', $email);
-                $query->bindParam(':profile_photo', $filename);
-                $query->bindParam(':password', $password);
-                $query->bindParam(':class_id', $id);
-                $query->execute();
-                $success = "Form teacher " . $fname . " " . $lname . " was added successfully";
+                if ($existing_teachername) {
+                    $error = "Thre is a form teacher with the same name you provided!";
+                }
+                else{
+                    // Insert the new form tutor
+                    $query = $db->prepare('INSERT INTO form_tutors (fname, lname, email, profile_photo, password, class_id) VALUES (:fname, :lname, :email, :profile_photo, :password, :class_id)');
+                    $query->bindParam(':fname', $fname);
+                    $query->bindParam(':lname', $lname);
+                    $query->bindParam(':email', $email);
+                    $query->bindParam(':profile_photo', $filename);
+                    $query->bindParam(':password', $hashedPassword);
+                    $query->bindParam(':class_id', $id);
+                    $query->execute();
+                    $success = "Form teacher " . $fname . " " . $lname . " was added successfully";
+                    }
+
             }
         }
     }

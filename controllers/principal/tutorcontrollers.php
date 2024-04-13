@@ -9,7 +9,7 @@ if(isset($_POST['login'])){
          $request->bindValue(':password', $password);
          $request->execute();
          if ($admin = $request->fetch(PDO::FETCH_ASSOC)) {
-            $_SESSION['admin']=$admin;
+            $formteacher=$admin;
             header("location: classes/classes.php");
             exit;
         }

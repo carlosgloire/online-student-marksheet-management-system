@@ -16,7 +16,7 @@
             $this->btnName=$btnName;
        }
        
-        public function displayForm($errror) {
+        public function displayForm() {
             ?>
             <form action="" method="post" enctype="multipart/form-data">
                     <h3 ><?= $this->title?></h3>    

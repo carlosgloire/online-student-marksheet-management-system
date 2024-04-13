@@ -3,9 +3,8 @@
    require_once('../../functions.php');
    require_once('../../models/GenericModel.php');
    require_once('../../database/DBConnection.php');
-   notconnected_principal();
    verifysession();
-    require_once('../../controllers/principal/addFormteacher.controller.php');
+require_once('../../controllers/formteacher/addstudent.controller.php');
 
 ?>
 <!DOCTYPE html>
@@ -22,14 +21,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer"
     />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add New Form teacher</title>
+    <title><?= $this->title?></title>
 </head>
 
 <body>
+    <?= $class_id?>
     <section class="connect-section">
         <div class="connect">
             <?= $form->displayForm($error)?>
             <p class="error"><?= $error?></p><p class="success"><?= $success ?></p>
+            <?= $_SESSION['class_id']?>
         </div>
     </section>
    

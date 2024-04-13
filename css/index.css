@@ -652,4 +652,57 @@ label {
 }
 .popup-container span {
   font-weight: bold;
+}
+
+.tutor-connected {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  -webkit-column-gap: 5px;
+  justify-content: flex-end;
+}
+.tutor-connected img {
+  width: 30px;
+  height: 30px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 50%;
+}
+
+.tutor-content {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 10px;
+  -webkit-column-gap: 10px;
+  margin-top: 80px;
+}
+.tutor-content .tutor-item {
+  text-align: center;
+  padding: 30px 30px;
+  box-shadow: 0px 5px 10px var(--grayShadow);
+}
+.tutor-content .tutor-item .tutor-icon {
+  padding: 20px 20px;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  color: var(--whiteColor);
+  background-color: var(--blueColor);
+}
+.tutor-content .tutor-item .click-div {
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 10px;
+  margin: auto;
+  margin-top: 10px;
+  transition: 0.8s;
+  border: 2px dotted var(--blueColor);
+}
+.tutor-content .tutor-item .click-div a,
+.tutor-content .tutor-item .click-div i {
+  font-size: 0.8rem;
+  color: var(--blueColor);
+}
+.tutor-content .tutor-item:hover {
+  box-shadow: 0px 15px 20px var(--grayShadow);
+  transform: translateY(10px);
 }/*# sourceMappingURL=index.css.map */

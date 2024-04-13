@@ -14,9 +14,9 @@ if(isset($_POST['signin'])){
          if(empty($_POST['email']) & empty($_POST['password'])){
             $error ="Incorrect Username or Password !!!";
          }
-         if ($tutor = $request->fetch(PDO::FETCH_ASSOC)) {
-            $_SESSION['email']=$tutor['email'];
-            $_SESSION['password']=$tutor['password'];
+         if ($formteacher = $request->fetch(PDO::FETCH_ASSOC)) {
+            $_SESSION['email']=$formteacher['email'];
+            $_SESSION['password']=$formteacher['password'];
             header("location: Formteacher.php");
             exit;
         }
