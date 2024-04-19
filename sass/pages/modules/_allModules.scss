@@ -18,10 +18,7 @@
             }
         }
     }
-    .modules {
-        display: grid;
-        grid-template-columns: auto auto;
-        margin-top: 10px;
+   
         .module-name {
             padding: 18px;
             display: flex;
@@ -49,4 +46,3 @@
             }
         }
     }
-}

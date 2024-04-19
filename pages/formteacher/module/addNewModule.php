@@ -3,7 +3,7 @@
     require_once('../../../functions.php');
     require_once('../../../database/DBConnection.php');
     require_once('../../../app/Form/form.php');
-    require_once('../../../controllers/formteacher/addmodule.controller.php');
+    require_once('../../../controllers/modules/addmodule.controller.php');
 ?>
 
 <!DOCTYPE html>

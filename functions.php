@@ -80,6 +80,24 @@ if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 
 $_SESSION['LAST_ACTIVITY'] = time();
 }
 
+//Function to check session expiration
+function verifysession2(){
+    // Set the session expiration time
+$expiration = 20* 60; // 24 hours of activity
+
+// Check if the session has expired
+if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > $expiration)) {
+    // Session expired, unset the session
+    session_unset();
+    session_destroy();
+    echo '<script>alert("Votre session a expire");</script>';
+    echo '<script>window.location.href="../../login.php";</script>';
+    exit;
+}
+// Update the last activity time
+$_SESSION['LAST_ACTIVITY'] = time();
+}
+
 function popup_delete($record,$function,$message,$fname,$lname,$id){  
     ?> 
       <div class="popup hidden-popup">

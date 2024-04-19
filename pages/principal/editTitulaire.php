@@ -27,24 +27,24 @@
 <body>
     <section class="connect-section">
         <div class="connect">
-            <h3>Edit tutilaire</h3>
+            <h3>Edit form teacher</h3>
             <form action="" method="post" enctype="multipart/form-data">
                 <div class="input-content">
                     <div class="all-inputs">
                         <label for="name">First name:</label>
-                        <input type="text" name="fname" value="<?= $fname_fetched?>" placeholder="Enter first name" required>
+                        <input type="text" name="fname" value="<?= $fname_fetched?>" placeholder="Enter first name" >
                     </div>
                 </div>
                 <div class="input-content">
                     <div class="all-inputs">
                         <label for="name">Last name:</label>
-                        <input type="text" name="lname" value="<?= $lname_fetched?>" placeholder="Enter last name" required>
+                        <input type="text" name="lname" value="<?= $lname_fetched?>" placeholder="Enter last name">
                     </div>
                 </div>
                 <div class="input-content">
                     <div class="all-inputs">
                         <label for="email">Email:</label>
-                        <input type="email" name="email" value="<?= $email_fetched?>" placeholder="Enter the class of titulaire" required>
+                        <input type="email" name="email" value="<?= $email_fetched?>" placeholder="Enter the class of titulaire">
                     </div>
                 </div>
                 <div class="input-content">
@@ -68,7 +68,7 @@
                 <div class="input-content">
                     <div class="all-inputs">
                         <label for="name">Profile image:</label>
-                        <input type="file" name="uploadfile" value="<?= $profile_photo_fetched?>"  placeholder="Enter the class of titulaire">
+                        <input type="file" name="uploadfile" value="<?= $profile_photo_fetched?>"  placeholder="Enter the class form teacher">
                     </div>
                 </div>
                 <div class="forgotten-password">

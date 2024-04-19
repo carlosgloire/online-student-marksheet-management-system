@@ -5,10 +5,25 @@
     require_once('../../database/DBConnection.php');
     logout();
     notconnected();
-    $model = new GenericModel($db, 'classes');
-    $records = $model->getAll();
-    $start=0;
-    $length=25;
+
+    
+// Query to select classes, count of students, count of courses, and form teacher for each class
+$query = $db->prepare("SELECT 
+    c.class_id AS classID, 
+    c.class_name AS className, 
+    COUNT(DISTINCT s.student_id) AS student_count,
+    COUNT(DISTINCT cr.course_id) AS course_count,
+    ft.fname AS fname,ft.lname AS lname
+    FROM classes c
+    LEFT JOIN students_per_class s ON c.class_id = s.class_id
+    LEFT JOIN courses cr ON c.class_id = cr.class_id
+    LEFT JOIN form_tutors ft ON c.class_id = ft.class_id
+    GROUP BY c.class_id, c.class_name, ft.fname,ft.lname
+    ORDER BY c.class_id, c.class_name");
+
+$query->execute();
+$results = $query->fetchAll(PDO::FETCH_ASSOC); // Fetch all rows
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,27 +52,25 @@
                 <h2>Classes</h2>
                 <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequuntur iste impedit, possimus tempore reiciendis veniam nesciunt molestiae facere eligendi aliquid iusto, voluptas voluptates blanditiis ipsum aut est odit nulla cupiditate.</p>
             </div>
-
             <div class="all-classes">
+                <?php
 
-                <div class="all-classes">
-                    <?php
-                        foreach($records as $record){
-                            ?>
-                                <div  class="classe-content">
-                                    <strong>0<?= $record->class_id?></strong>
-                                    <h4><?= $record->class_name?></h4>
-                                    <p>The class has 20 strudents</p>
-                                    <p>This class contain 15 modules</p>
-                                    <div class="class-titular">
-                                        <p>Titular: </p>
-                                        <span>Anicet CHIZA</span>
-                                    </div>
+             
+                    foreach($results as $result){
+                        ?>
+                            <div  class="classe-content">
+                                <strong><?= $result['classID']?></strong>
+                                <h4><?= $result['className']?></h4>
+                                <div style="display: flex;gap:10px"><p>Number of students: </p><p style="font-weight: bold;"><?= $result['student_count'] ?></p></div>
+                                <div style="display: flex;gap:10px"><p>Number of modules: </p><p style="font-weight: bold;"><?= $result['course_count'] ?></p></div>
+                                <div class="class-titular">
+                                    <p>Form teacher: </p>
+                                    <span><?=! empty($result['fname']) && !empty($result['lname']) ? ($result['fname'])." ".($result['lname']): " No form teacher " ?></span>
                                 </div>
-                            <?php
-                        }
-                    ?>
-                </div>
+                            </div>
+                        <?php
+                    }
+                ?>
             </div>
         </div>
     </section>

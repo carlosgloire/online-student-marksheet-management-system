@@ -5,6 +5,8 @@
     -webkit-column-gap: 15px;
     margin-top: 40px;
     grid-template-columns: auto auto auto;
+    height: 70vh;
+    overflow: auto;
     .classe-content {
         padding: 20px 20px;
         box-shadow: 0px 5px 10px var(--grayShadow);
@@ -24,8 +26,8 @@
             align-items: center;
             margin-top: 10px;
             color: var(--blueColor);
-            font-weight: 500;
             font-size: 0.9rem;
+  
         }
         &:hover {
             transition: 0.8s;

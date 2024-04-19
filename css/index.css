@@ -305,6 +305,8 @@ label {
   -webkit-column-gap: 15px;
   margin-top: 40px;
   grid-template-columns: auto auto auto;
+  height: 70vh;
+  overflow: auto;
 }
 .all-classes .classe-content {
   padding: 20px 20px;
@@ -326,7 +328,6 @@ label {
   align-items: center;
   margin-top: 10px;
   color: var(--blueColor);
-  font-weight: 500;
   font-size: 0.9rem;
 }
 .all-classes .classe-content:hover {
@@ -534,12 +535,7 @@ label {
   font-size: 0.8rem;
   color: var(--whiteColor);
 }
-.design-modules .modules {
-  display: grid;
-  grid-template-columns: auto auto;
-  margin-top: 10px;
-}
-.design-modules .modules .module-name {
+.design-modules .module-name {
   padding: 18px;
   display: flex;
   margin-top: 5px;
@@ -547,15 +543,15 @@ label {
   justify-content: space-between;
   box-shadow: 0px 5px 10px var(--grayShadow);
 }
-.design-modules .modules .module-name div {
+.design-modules .module-name div {
   display: flex;
   align-items: center;
 }
-.design-modules .modules .module-name div span {
+.design-modules .module-name div span {
   color: var(--blueColor);
   font-weight: 600;
 }
-.design-modules .modules .module-name div .modify {
+.design-modules .module-name div .modify {
   cursor: pointer;
   margin-left: 5px;
   padding: 8px 10px;
@@ -564,7 +560,7 @@ label {
   color: var(--blueColor);
   background-color: var(--btnColor);
 }
-.design-modules .modules .module-name div .delete {
+.design-modules .module-name div .delete {
   cursor: pointer;
   margin-left: 5px;
   padding: 8px 10px;

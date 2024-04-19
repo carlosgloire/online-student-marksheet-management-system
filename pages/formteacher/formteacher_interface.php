@@ -30,6 +30,7 @@
         <?php require_once('navbar.php')?>
 
         <div class="class-content">
+            
             <div class="tutor-connected">
                 <p><img src="../principal/profile_photo/<?= $_SESSION['file']?>"></p>
                 <h5><?= $_SESSION['fname']." ".$_SESSION['lname']?></h5> 
@@ -52,7 +53,7 @@
                     <i class="fa-solid fa-gear tutor-icon"></i>
                     <h2>Modules</h2>
                     <div class="click-div">
-                        <a href="./module/module.html">View in details</a>
+                        <a href="./module/modules.php">View in details</a>
                         <i class="fa-regular fa-hand-point-up"></i>
                     </div>
                 </div>

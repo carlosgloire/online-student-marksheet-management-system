@@ -6,10 +6,19 @@
     require_once('../../database/DBConnection.php');
     notconnected_principal();
     verifysession();
-    $model = new GenericModel($db, 'classes');
-    $records = $model->getAll();
-    $start=0;
-    $length=25;
+   
+    $query = $db->prepare("SELECT 
+    c.class_id AS classID, 
+    c.class_name AS className, 
+    ft.fname AS fname,ft.lname AS lname,tutor_id AS teacherID
+    FROM classes c
+    
+    LEFT JOIN form_tutors ft ON c.class_id = ft.class_id
+    GROUP BY c.class_id, c.class_name, ft.tutor_id, ft.fname,ft.lname
+    ORDER BY c.class_id, c.class_name");
+
+$query->execute();
+$records = $query->fetchAll(PDO::FETCH_ASSOC); // Fetch all rows
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -39,21 +48,43 @@
             </div>
 
             <div class="all-classes">
-                <?php
-                    foreach($records as $record){
-                        ?>
-                            <div  class="classe-content">
-                                <strong>0<?= $record->class_id?></strong>
-                                <p><?= $record->class_name?></p>
-                                <div class="icons-view">
-                                    <a class="details" href="addNewform_teacher.php?class_id=<?= $record->class_id?>">Click here to Add</a>
-                                    <i class="fa-solid fa-arrow-right"></i>
-                                </div>
-                            </div>
-                        <?php
-                    }
+    <?php
+    foreach ($records as $record) {
+        ?>
+        <div class="classe-content">
+            <strong><?= $record['classID'] ?></strong>
+            <p style="margin-bottom: 10px;"><?= $record['className'] ?></p>
+            <?php
+            if (empty($record['fname']) && empty($record['lname'])) {
+                // No form teacher assigned
+                
                 ?>
-            </div>
+                    <p style="color: red;">No form teacher in this class</p>
+                    <div style="margin-top: 5px;" class="icons-view">
+                        <a class="details" href="addNewform_teacher.php?class_id=<?= $record['classID'] ?>">Click here to Add</a>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </div>
+                <?php
+            } else {
+                ?>
+                <p style="color: green;">Form teacher: <?= $record['fname']." ".$record['lname'] ?></p>
+                <div style="margin-top: 5px;" class="icons-view">
+                    <a class="details" href="editTitulaire.php?tutor_id=<?= $record['teacherID'] ?>">Click here to modify</a>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </div>
+                <?php
+                
+            }
+            ?>
+             
+              
+                
+        </div>
+        <?php
+    }
+    ?>
+</div>
+
         </div>
     </section>
 

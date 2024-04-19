@@ -16,17 +16,21 @@ if (isset($_POST['add'])) {
     $existing_module_query = $db->prepare("SELECT *FROM courses WHERE class_id={$_SESSION['class_id']} AND course_name=?");
     $existing_module_query->execute(array($modname));
     $existing_module = $existing_module_query->fetch();
-
-    if ($existing_module) {
-        $error = "There is another module with the same name in this class!";
-    } else {
-        
+    if(empty($coeff) || empty($modname)){
+        $error = "Please complete all the fields ";
+     }
+   else {
+        if ($existing_module) {
+            $error = "There is another module with the same name in this class!";
+        } else{
             $query = $db->prepare('INSERT INTO courses (course_name, class_id, coefficient) VALUES (:course_name, :class_id, :coefficient)');
             $query->bindParam(':course_name', $modname);
             $query->bindParam(':class_id', $_SESSION['class_id']);
             $query->bindParam(':coefficient', $coeff);
             $query->execute();
             $success = "The module of " . $modname .  " was added successfully";
+        }
+           
         }
     }
 

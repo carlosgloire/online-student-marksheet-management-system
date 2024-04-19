@@ -5,8 +5,10 @@
     require_once('../../../functions.php');
     require_once('../../../database/DBConnection.php');
     logout_formteacher2();
-    $request = $db->prepare("SELECT * FROM students_per_class WHERE class_id = {$_SESSION['class_id']} ");
-    $request->execute();
+    verifysession2();
+    $request = $db->prepare("SELECT * FROM students_per_class WHERE class_id = :class_id ");
+    $request->execute(array('class_id'=>$_SESSION['class_id']));
+    $students = $request->fetchAll(PDO::FETCH_ASSOC)
    
 ?>
 <!DOCTYPE html>
@@ -40,7 +42,7 @@
     <section class="principal-Section">
         <!-- this is the nav bar for the left side of our system-->
         <?php require_once('navbar.php')?>
-        </nav>
+       
 
         <div class="class-content">
 
@@ -59,19 +61,18 @@
                 </div>
             </div>
             <?php
-                if($request->rowCount() > 0){
-                    while( $students = $request->fetch(PDO::FETCH_ASSOC)){
+                if(count($students) > 0){
+                    foreach( $students as $student){
                         
                         ?>
                           <div class="list-student">
                             <div class="student-identity">
-                                <div class="stdt"><p class="regnumber"><?=$students['regnumber'] ?></p></p><?=$students['fname']." ".$students['lname']?><p></div>
+                                <div class="stdt"><p class="regnumber"><?=$student['regnumber'] ?></p></p><?=$student['fname']." ".$student['lname']?><p></div>
                                 <div>
-                                    <a class="modify" href="./edit_student.php?student_id=<?= $students['student_id']?>"><i class="fa-solid fa-pencil"></i></a>
-                                    <button  class="delete" data-formteacher-id="<?= $students['student_id'] ?>"><i class="fa-solid fa-trash-can"></i></button>
+                                    <a class="modify" href="./edit_student.php?student_id=<?= $student['student_id']?>"><i class="fa-solid fa-pencil"></i></a>
+                                    <button  class="delete" data-formteacher-id="<?= $student['student_id'] ?>"><i class="fa-solid fa-trash-can"></i></button>
                                 </div>
                             </div>
-                            <?= popup_delete2("principal","Are you sure you want to remove",$students['fname'],$students['lname'],$students['student_id'])?>
                         </div>
                         <?php
                     }
@@ -87,7 +88,16 @@
     </section>
    
                 
-  
+    <div class="popup hidden-popup">
+        <div class="popup-container">
+            <h4>Dear <?= $function?>,</h4>
+            <p><?= $message ?><br><span><?= $fname." ".$lname?></span> From your system?</p>
+            <div class="popup-btn">
+                <button class="cancel-popup">Cancel</button>
+                <a href="delete_formTeacher.php?tutor_id=<?= $id?>" class="delete-popup">Delete</a>
+            </div>
+        </div>
+    </div>
     <div class="hidden-popup"></div>
 
     <!-- This part contain the footer of our system -->
@@ -96,4 +106,20 @@
     </footer>
 </body>
 </html>
-<?php require_once('../../../javascript/popupdelete_formTeacher.php');
+<script>
+        // JavaScript code
+    const deleteButtons = document.querySelectorAll('.delete');
+    deleteButtons.forEach(button => {
+        button.addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent the default link behavior
+            const productId = this.getAttribute('data-formteacher-id');
+            const popup = this.nextElementSibling;
+            popup.style.display = 'block';
+
+            const closePopup = popup.querySelector('.cancel-popup');
+            closePopup.addEventListener('click', function() {
+                popup.style.display = 'none';
+            });
+        });
+    });
+</script>

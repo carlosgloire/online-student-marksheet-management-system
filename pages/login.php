@@ -35,13 +35,13 @@ require_once('../controllers/loginControllers.php');
                     <div class="input-content">
                         <div class="all-inputs">
                             <i class="fa-solid fa-envelope"></i>
-                            <input type="email" name="mail" placeholder="Enter your email" required>
+                            <input type="email" name="mail" placeholder="Enter your email" value="<?= isset($_POST['mail']) ? $_POST['mail'] : ''?>">
                         </div>
                     </div>
                     <div class="input-content">
                         <div class="all-inputs">
                             <i class="fa-solid fa-lock"></i>
-                            <input class="password" name="password" type="password" placeholder="Enter your password" required>
+                            <input class="password" name="password" type="password" placeholder="Enter your password" value="<?= isset($_POST['password']) ? $_POST['password'] : ''?>">
                             <div class="eyes">
                                 <i class="fa-solid fa-eye open"></i>
                                 <i class="fa-solid fa-eye-slash close hidden"></i>
@@ -51,7 +51,7 @@ require_once('../controllers/loginControllers.php');
                     </div>
                     <div class="forgotten-password">
                         <p>Forgotten password</p>
-                        <a href="#">click here</a>
+                        <a href="forgot-password.php">click here</a>
                     </div>
                     <div class="btn">
                         <button type="submit" name="login">Login</button>

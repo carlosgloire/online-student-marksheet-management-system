@@ -2,9 +2,8 @@
    session_start();
    require_once('../../../database/DBConnection.php');
    require_once('../../../functions.php');
-   require_once('../../../models/GenericModel.php');
    require_once('../../../database/DBConnection.php');
-   require_once('../../../controllers/formteacher/editstudent.controller.php');
+   require_once('../../../controllers/modules/editmodule.php');
    verifysession();
 ?>
 <!DOCTYPE html>
@@ -30,36 +29,14 @@
             <form action="" method="post" >
                 <div class="input-content">
                 <div class="all-inputs">
-                        <label for="name">Registration number:</label>
-                        <input type="text" name="regnumber" placeholder="Enter first name" value="<?=$regnumber_fetched?>" required>
-                    </div>
-                    <div class="all-inputs">
-                        <label for="name">First name:</label>
-                        <input type="text" name="fname" placeholder="Enter first name" value="<?=$fname_fetched?>" required>
-                    </div>
+                    <label for="name">Coefficient:</label>
+                    <input type="text" name="coefficient"  value="<?=$coefficient_fetched?>" >
+                </div>
                 </div>
                 <div class="input-content">
                     <div class="all-inputs">
-                        <label for="name">Last name:</label>
-                        <input type="text" name="lname" placeholder="Enter last name" value="<?=$lname_fetched?>"  required>
-                    </div>
-                </div>
-                <div class="input-content">
-                    <div class="all-inputs">
-                        <label for="name">Date of birth:</label>
-                        <input type="date" name="dob"  value="<?=$bob_fetched?>"  required>
-                    </div>
-                </div>
-                <div class="input-content">
-                    <div class="all-inputs">
-                        <label for="name">Place of birth:</label>
-                        <input type="text" name="pob" placeholder="Enter the place of birth" value="<?=$pob_fetched?>"  required>
-                    </div>
-                </div>
-                <div class="input-content">
-                    <div class="all-inputs">
-                        <label for="name">Parent address:</label>
-                        <input type="text" name="parent_address" placeholder="Enter the parent address"  value="<?=$parentAddress_fetched?>"  required>
+                        <label for="name">Module name:</label>
+                        <input type="text" name="course_name"  value="<?=$course_fetched?>" >
                     </div>
                 </div>
                 <div class="btn">

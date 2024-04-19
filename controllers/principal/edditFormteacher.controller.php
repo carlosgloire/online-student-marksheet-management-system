@@ -16,6 +16,10 @@ if (isset($_GET['tutor_id']) && !empty($_GET['tutor_id'])) {
         $existing_teacher_query = $db->prepare('SELECT * FROM form_tutors WHERE class_id = ?');
         $existing_teacher_query->execute(array($class_id));
         $existing_teacher = $existing_teacher_query->fetch();
+        if ($existing_teacher AND $existing_teachername) {
+        
+            $error = "There is a form teacher already assigned to this class and <br/> with the same name you provided!";
+        }
     }        
 
 
@@ -42,9 +46,10 @@ if (isset($_POST['modify'])) {
      $existing_teachername_query = $db->prepare('SELECT fname,lname FROM form_tutors WHERE fname = ? AND lname = ?');
      $existing_teachername_query->execute(array($fname,$lname));
      $existing_teachername = $existing_teachername_query->fetch();
-
-    // Check if a new file is uploaded
-    if (!empty($_FILES['uploadfile']['name'])) {
+     if(empty($fname) || empty($lname) || empty($email) ){
+        $error = "Please complete all fields"; 
+    }
+    elseif (!empty($_FILES['uploadfile']['name'])) {
         $filename = $_FILES["uploadfile"]["name"];
         $filesize = $_FILES["uploadfile"]["size"];
         $tempname = $_FILES["uploadfile"]["tmp_name"];
@@ -54,24 +59,20 @@ if (isset($_POST['modify'])) {
         
         if (!preg_match($pattern, $filename)) {
             $error = "Your file must be in 'jpg', 'jpeg' or 'png' format";
-        } elseif ($filesize > 5000000) {
-            $error = "Your file must not exceed 5MB";
+        } elseif ($filesize > 3000000) {
+            $error = "Your file must not exceed 3MB";
         } elseif (!move_uploaded_file($tempname, $folder)) {
             $error = "Error while uploading";
         }
     }
-    if ($existing_teacher AND $existing_teachername) {
-        
-        $error = "There is a form teacher already assigned to this class and <br/> with the same name you provided!";
-    }
-   
+  
     // Check if a new class is selected
-    if (!empty($_POST['classes'])) {
+    elseif (!empty($_POST['classes'])) {
         $class = htmlspecialchars($_POST['classes']);
 
         // Check if the new class_id exists in the 'classes' table
         $checkClass = $db->prepare("SELECT * FROM classes WHERE class_id = ?");
-        $checkClass->execute([$class]);
+        $checkClass->execute([$class_id]);
         if (!$checkClass->fetch()) {
             $error = "Please select the class!!";
         }
@@ -82,7 +83,9 @@ if (isset($_POST['modify'])) {
         // Update form_tutors with the new data
         $updateTeacher = $db->prepare('UPDATE form_tutors SET fname = ?, lname = ?, email = ?, profile_photo = ?, class_id = ? WHERE tutor_id = ?');
         $updateTeacher->execute([$fname, $lname, $email, $filename, $class, $id]);
-        $success = "Form teacher updated successfully";
+        echo '<script>alert("Form teacher updated successfully");</script>';
+        echo '<script>window.location.href="Formteacher.php";</script>';
+        exit;
     }
 }
 ?>

@@ -3,7 +3,7 @@ $success = null;
 $error = null;
 require_once('../../app/Form/form.php');
 require_once('../../database/DBConnection.php');
-$form = new Form("Add a Form tutor", "add", "Add Form tutor");
+$form = new Form("Add a Form teacher", "add", "Add Form teacher");
 $form->addField("text", "fname", "First name", "Enter First name");
 $form->addField("text", "lname", "Last name", "Enter Last name");
 $form->addField("email", "email", "Email", "Enter email");
@@ -16,7 +16,17 @@ if (isset($_GET['class_id']) && !empty($_GET['class_id'])) {
     $recupproduct = $db->prepare('SELECT * FROM classes WHERE class_id = ?');
     $recupproduct->execute(array($id));
     $infos = $recupproduct->fetch();
-    $class_name = $infos['class_name'];
+    if($infos){
+        $classId_fetched= $infos['class_id'];
+    }
+    else{
+        session_destroy();
+        unset($_SESSION['email']);
+        unset($_SESSION['password']);
+        echo '<script>alert("No class not found");</script>';
+        echo '<script>window.location.href="connect.php";</script>';
+        exit;
+    }
 }
 
 if (isset($_POST['add'])) {
@@ -36,11 +46,16 @@ if (isset($_POST['add'])) {
     $existing_teachername_query = $db->prepare('SELECT fname,lname FROM form_tutors WHERE fname = ? AND lname = ?');
     $existing_teachername_query->execute(array($fname,$lname));
     $existing_teachername = $existing_teachername_query->fetch();
-    // Validate uploaded file
-    if (!preg_match($pattern, $_FILES['uploadfile']['name']) && !empty($_FILES['uploadfile']['name'])) {
+    if(  empty($fname) || empty($lname) || empty($email) || empty($password)){
+        $error = "Please complete all fields"; 
+    }
+    elseif(empty($filename)){
+        $error = "Choosing a profile photo is mendatory !!"; 
+    }
+    elseif (!preg_match($pattern, $_FILES['uploadfile']['name']) && !empty($_FILES['uploadfile']['name'])) {
         $error = "Your file must be in \"jpg, jpeg or png\" format";
-    } elseif ($filesize > 5000000) {
-        $error = "Your file must not exceed 5Mb";
+    } elseif ($filesize > 3000000) {
+        $error = "Your file must not exceed 3Mb";
     }
 
     // Validate password complexity
@@ -75,7 +90,9 @@ if (isset($_POST['add'])) {
                     $query->bindParam(':password', $hashedPassword);
                     $query->bindParam(':class_id', $id);
                     $query->execute();
-                    $success = "Form teacher " . $fname . " " . $lname . " was added successfully";
+                    echo '<script>alert("Form teacher added successfully");</script>';
+                    echo '<script>window.location.href="classes.php";</script>';
+                    exit;
                     }
 
             }
