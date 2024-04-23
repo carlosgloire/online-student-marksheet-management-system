@@ -22,7 +22,17 @@ require_once('../../controllers/principal/connectController.php');
 <body>
     <section class="connect-section">
         <div class="connect">
-            <?= $form->signin_signup_form()?>
+            <form action="" method="post">
+                <h3>Sign in as a principal</h3>
+                <?= $form->signin_signup_form()?>
+                <div class="forgotten-password">
+                    <p>Forgotten password</p>
+                    <a href="forgot-password.php">click here </a>
+                </div>
+                <div class="btn">
+                    <button type="submit" name="signin">SIGN IN</button>
+                </div>
+            </form>
             <p class="error"><?= $error?></p>
         </div>
     </section>

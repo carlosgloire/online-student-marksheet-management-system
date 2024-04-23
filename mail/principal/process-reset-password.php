@@ -8,7 +8,7 @@ if(isset($_POST['reset'])){
     
     $mysqli = require __DIR__ . "../database.php";
     
-    $sql = "SELECT * FROM users
+    $sql = "SELECT * FROM principals
             WHERE reset_token_hash = ?";
     
     $stmt = $mysqli->prepare($sql);
@@ -41,7 +41,7 @@ if(isset($_POST['reset'])){
     }else{
         $password_hash = password_hash($_POST["password"], PASSWORD_DEFAULT);
     
-        $sql = "UPDATE users
+        $sql = "UPDATE principals
                 SET password = ?,
                     reset_token_hash = NULL,
                     reset_token_expires_at = NULL

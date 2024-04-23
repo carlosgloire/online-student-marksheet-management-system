@@ -1,13 +1,33 @@
 
 <?php
     session_start();
-    require_once('../../../app/Form/form.php');
-    require_once('../../../functions.php');
-    require_once('../../../database/DBConnection.php');
+    require_once('../../app/Form/form.php');
+    require_once('../../functions.php');
+    require_once('../../database/DBConnection.php');
     logout_formteacher2();
+    if (isset($_GET['student_id']) && !empty($_GET['student_id'])) {
+        //Getting the form teacher id
+        $id = $_GET['student_id'];
+        $_SESSION['studentID']=$id;
+        $request = $db->prepare("SELECT * FROM students_per_class WHERE student_id = ?");
+        $request->execute([$id]);
+        $stmt = $request->fetch();
+        if ($stmt) {
+            $course_fetched = $stmt['student_id'];
+
+        
+        } else {
+            echo '<script>alert("student not found");</script>';
+            echo '<script>window.location.href="../student/student_list.php";</script>';
+            exit;
+    
+        }
+    }
     $request = $db->prepare("SELECT ft.*,st.* FROM courses ft LEFT JOIN classes st ON ft.class_id = st.class_id WHERE  ft.class_id = {$_SESSION['class_id']} ");
     $request->execute();
-  
+    
+
+
    
 ?>
 <!DOCTYPE html>
@@ -15,7 +35,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="../../../css/index.css">
+    <link rel="stylesheet" href="../../css/index.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Outfit:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
@@ -43,7 +63,7 @@
 
         <div class="design-modules">
             <div class="tutor-connected">
-                <p><img src="../../principal/profile_photo/<?= $_SESSION['file']?>"></p>
+                <p><img src="../principal/profile_photo/<?= $_SESSION['file']?>"></p>
                 <h5><?= $_SESSION['fname']." ".$_SESSION['lname']?></h5>
             </div>
             <h2> Modules of
@@ -54,31 +74,21 @@
                 echo strtolower($class['class_name']);
              ?> 
             </h2>
-            
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Placeat sapiente quae iure maiores delectus expedita, esse saepe eos fuga nulla.</p>
-
-            <!-- this div is for adding a new class -->
-            <div class="add-module">
-                <div>
-                    <i class="fa-solid fa-plus"></i>
-                    <a href="./addNewModule.php">Add a new module</a>
-                </div>
-            </div>
-
             <!-- this section contain all the modules that we have in this class -->
             
-               
                 <?php
                 if($request->rowCount() > 0){
                     while( $modules = $request->fetch(PDO::FETCH_ASSOC)){
-                        
                         ?>
-                           <div class="module-name">
+                           <div class="module-name" style="margin-top: 15px;">
                                 <p class="regnumber"><?=$modules['course_name'] ?></p>
                                 <div>
-                                    <p>Coeff: <span><?=$modules['coefficient'] ?></span></p>
-                                    <a class="modify" href="./editModule.php?course_id=<?= $modules['course_id']?>"><i class="fa-solid fa-pencil"></i></a>
-                                    <button class="delete" ><i class="fa-solid fa-trash-can"></i></button>
+                                    <div class="add-marks">
+                                        <div>
+                                            <i class="fa-solid fa-plus"></i>
+                                            <a href="addMarks.php?course_id=<?=$modules['course_id']?>">Add marks</a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         <?php
@@ -119,4 +129,4 @@
 </body>
 </html>
 <?php
-require_once('../../../javascript/popupdelete_formTeacher.php');
+require_once('../../javascript/popupdelete_formTeacher.php');

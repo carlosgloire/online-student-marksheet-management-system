@@ -38,7 +38,7 @@
                 </div>
                 <div class="forgotten-password">
                     <p>Forgotten password</p>
-                    <a href="#">click here</a>
+                    <a href="../pages/forgot-password.php">click here</a>
                 </div>
                 <div class="btn">
                     <button type="submit">Sign in</button>

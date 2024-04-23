@@ -113,12 +113,12 @@ function popup_delete($record,$function,$message,$fname,$lname,$id){
     <?php
     }
 
-    function popup_delete2($function,$message,$fname,$lname,$id){  
+    function popup_delete2($function,$message,$modulename,$id){  
         ?> 
           <div class="popup hidden-popup">
             <div class="popup-container">
                 <h4>Dear <?= $function?>,</h4>
-                <p><?= $message ?><br><span><?= $fname." ".$lname?></span> From your system?</p>
+                <p><?= $message ?><br><span><?= $modulename ?></span> From your system?</p>
                 <div class="popup-btn">
                     <button class="cancel-popup">Cancel</button>
                     <a href="delete_formTeacher.php?tutor_id=<?= $id?>" class="delete-popup">Delete</a>

@@ -28,6 +28,22 @@ if (isset($_GET['tutor_id']) && !empty($_GET['tutor_id'])) {
         $lname_fetched = $stmt['lname'];
         $email_fetched = $stmt['email'];
         $profile_photo_fetched = $stmt['profile_photo'];
+  
+    } else {
+        echo '<script>alert("Form teacher not found");</script>';
+        echo '<script>window.location.href="Formteacher.php";</script>';
+        exit;
+    }
+}
+
+if (isset($_GET['class_id']) && !empty($_GET['class_id'])) {
+    //Getting the form teacher id
+    $classID = $_GET['class_id'];
+    $request = $db->prepare("SELECT * FROM classes WHERE class_id = ?");
+    $request->execute([$classID]);
+    $stmt = $request->fetch();
+
+    if ($stmt) {
         $class_id_fetched = $stmt['class_id'];
     } else {
         echo '<script>alert("Form teacher not found");</script>';
@@ -40,8 +56,9 @@ if (isset($_POST['modify'])) {
     $fname = htmlspecialchars($_POST['fname']);
     $lname = htmlspecialchars($_POST['lname']);
     $email = htmlspecialchars($_POST['email']);
-   
+    $class = htmlspecialchars($_POST['classes']);
     $filename = $stmt['profile_photo']; // Default to previous profile photo
+    $class= $stmt['class_id']; //classe reste vide a travailler
      // Check if a form teacher name is already assigned to this class
      $existing_teachername_query = $db->prepare('SELECT fname,lname FROM form_tutors WHERE fname = ? AND lname = ?');
      $existing_teachername_query->execute(array($fname,$lname));
@@ -67,16 +84,7 @@ if (isset($_POST['modify'])) {
     }
   
     // Check if a new class is selected
-    elseif (!empty($_POST['classes'])) {
-        $class = htmlspecialchars($_POST['classes']);
-
-        // Check if the new class_id exists in the 'classes' table
-        $checkClass = $db->prepare("SELECT * FROM classes WHERE class_id = ?");
-        $checkClass->execute([$class_id]);
-        if (!$checkClass->fetch()) {
-            $error = "Please select the class!!";
-        }
-    }
+  
        
     if(empty($error)){
        

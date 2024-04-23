@@ -43,7 +43,7 @@ if (isset($_POST['modify'])) {
         }else{
               // Update form_tutors with the new data
             $updatecourse = $db->prepare('UPDATE courses SET course_name=?, coefficient = ? WHERE course_id = ?');
-            $updatecourse->execute([$course_name,$coefficient,$_SESSION['class_id']]);
+            $updatecourse->execute([$course_name,$coefficient,$id]);
             echo '<script>alert("Course updated successfully");</script>';
             echo '<script>window.location.href="../module/modules.php";</script>';
             exit;

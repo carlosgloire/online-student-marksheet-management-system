@@ -61,7 +61,7 @@
                     <i class="fa-brands fa-maxcdn tutor-icon"></i>
                     <h2>Marks</h2>
                     <div class="click-div">
-                        <a href="#">View in details</a>
+                        <a href="../marks/student_list.php">View in details</a>
                         <i class="fa-regular fa-hand-point-up"></i>
                     </div>
                 </div>

@@ -1,6 +1,7 @@
 <?php
     
-
+    $error=null;
+    $success=null;
     $token = $_GET["token"];
     
     $token_hash = hash("sha256", $token);
@@ -32,10 +33,9 @@
         exit;
     }
     
-    
+    require_once('../mail/principal/process-reset-password.php');
     require_once('../mail/process-reset-password.php');
-    $error=null;
-    $success=null;
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">

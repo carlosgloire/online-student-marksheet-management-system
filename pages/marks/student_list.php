@@ -1,9 +1,9 @@
 
 <?php
     session_start();
-    require_once('../../../app/Form/form.php');
-    require_once('../../../functions.php');
-    require_once('../../../database/DBConnection.php');
+    require_once('../../app/Form/form.php');
+    require_once('../../functions.php');
+    require_once('../../database/DBConnection.php');
     logout_formteacher2();
     verifysession2();
     $request = $db->prepare("SELECT * FROM students_per_class WHERE class_id = :class_id ");
@@ -16,7 +16,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="../../../css/index.css">
+    <link rel="stylesheet" href="../../css/index.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Outfit:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
@@ -47,19 +47,13 @@
         <div class="class-content">
 
             <div class="tutor-connected">
-                <p><img src="../../principal/profile_photo/<?= $_SESSION['file']?>"></p>
+                <p><img src="../principal/profile_photo/<?= $_SESSION['file']?>"></p>
                 <h5><?= $_SESSION['fname']." ".$_SESSION['lname']?></h5>
             </div>
             <div class="title">
                 <h2>List of Students</h2>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequuntur iste impedit, possimus tempore reiciendis veniam nesciunt molestiae facere eligendi aliquid iusto, voluptas voluptates blanditiis ipsum aut est odit nulla cupiditate.</p>
             </div>
-            <div class="add-student">
-                <div>
-                    <i class="fa-solid fa-plus"></i>
-                    <a href="addStudent.php">Add student</a>
-                </div>
-            </div>
+
             <?php
                   if(count($students) > 0){
                     foreach( $students as $student){
@@ -67,12 +61,15 @@
                         ?>
                           <div class="list-student">
                             <div class="student-identity">
-                                <div class="stdt"><p class="regnumber"><?=$student->regnumber ?></p></p><?=$student->fname." ".$student->lname?><p></div>
-                                <div>
-                                    <a class="modify" href="./edit_student.php?student_id=<?= $student->student_id?>"><i class="fa-solid fa-pencil"></i></a>
-                                    <button class="delete" data-formteacher-id="<?= $student->student_id ?>"><i class="fa-solid fa-trash-can"></i></button>
+                                <div class="stdt"><p class="regnumber"><?=$student->student_id ?></p></p><?=$student->fname." ".$student->lname?><p></div>
+                                <div class="add-marks">
+                                    <div>
+                                        <i class="fa-solid fa-plus"></i>
+                                        <a href="modules.php?student_id=<?=$student->student_id ?>">Add marks</a>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+
                         <?php
                     }
                 }
@@ -85,12 +82,9 @@
             ?>
         </div>
     </section>
-
-
     <!-- This part contain the footer of our system -->
     <footer>
         <p>©Marksheet Management System</p>
     </footer>
 </body>
 </html>
-<?php require_once('../../../javascript/popupdelete_formTeacher.php')?>

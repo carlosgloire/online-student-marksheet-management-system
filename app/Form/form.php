@@ -41,33 +41,23 @@
         }
         public function signin_signup_form() {
             ?>
-            <h3><?=$this->title?></h3>
-           <form action="" method="post">
-                    <div class="input-content">
-                        <div class="all-inputs">
-                            <i class="fa-solid fa-envelope"></i>
-                            <input type="email" name="email" placeholder="Enter your email" value="<?= isset($_POST['email']) ? $_POST['email'] : ''?>" >
+                <div class="input-content">
+                    <div class="all-inputs">
+                        <i class="fa-solid fa-envelope"></i>
+                        <input type="email" name="email" placeholder="Enter your email" value="<?= isset($_POST['email']) ? $_POST['email'] : ''?>" >
+                    </div>
+                </div>
+                <div class="input-content">
+                    <div class="all-inputs">
+                        <i class="fa-solid fa-lock"></i>
+                        <input class="password" name="password" type="password" placeholder="Enter your password"  value="<?= isset($_POST['password']) ? $_POST['password'] : ''?>">
+                        <div class="eyes">
+                            <i class="fa-solid fa-eye open"></i>
+                            <i class="fa-solid fa-eye-slash close hidden"></i>
+
                         </div>
                     </div>
-                    <div class="input-content">
-                        <div class="all-inputs">
-                            <i class="fa-solid fa-lock"></i>
-                            <input class="password" name="password" type="password" placeholder="Enter your password"  value="<?= isset($_POST['password']) ? $_POST['password'] : ''?>">
-                            <div class="eyes">
-                                <i class="fa-solid fa-eye open"></i>
-                                <i class="fa-solid fa-eye-slash close hidden"></i>
-    
-                            </div>
-                        </div>
-                    </div>
-                    <div class="forgotten-password">
-                        <p>Forgotten password</p>
-                        <a href="#">click here </a>
-                    </div>
-                    <div class="btn">
-                        <button type="submit" name="<?= $this->btnName?>"><?= $this->value?></button>
-                    </div>
-                </form>
+                </div>
             <?php
         }
    

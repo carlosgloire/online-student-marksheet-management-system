@@ -13,7 +13,26 @@
         }
     }
 }
-
+.add-marks {
+    @include right-alignment;
+   
+ 
+    div {
+        @include right-alignment-div;
+        background-color: var(--whiteColor);
+        padding: 5px 10px;
+        margin-top: 0px;
+        &:hover {
+            transform: translateY(0.1rem);
+        }
+        i,
+        a {
+            @include right-alignment-i-a;
+            color: var(--blueColor);
+            
+        }
+    }
+}
 .list-student {
     margin-top: 20px;
 }

@@ -69,7 +69,7 @@ $records = $query->fetchAll(PDO::FETCH_ASSOC); // Fetch all rows
                 ?>
                 <p style="color: green;">Form teacher: <?= $record['fname']." ".$record['lname'] ?></p>
                 <div style="margin-top: 5px;" class="icons-view">
-                    <a class="details" href="editTitulaire.php?tutor_id=<?= $record['teacherID'] ?>">Click here to modify</a>
+                    <a class="details" href="editTitulaire.php?tutor_id=<?= $record['teacherID'] ?>&class_id=<?= $record['classID'] ?>">Click here to modify</a>
                     <i class="fa-solid fa-arrow-right"></i>
                 </div>
                 <?php

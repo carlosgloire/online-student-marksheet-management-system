@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 require_once('../mail/send-password-reset.php');
 ?>
 <!DOCTYPE html>
