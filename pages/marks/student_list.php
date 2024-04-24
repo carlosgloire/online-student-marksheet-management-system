@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer"
     />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>List of students</title>
+    <title>LIST OF STUDENTS</title>
 </head>
 
 <body>
@@ -51,7 +51,7 @@
                 <h5><?= $_SESSION['fname']." ".$_SESSION['lname']?></h5>
             </div>
             <div class="title">
-                <h2>List of Students</h2>
+                <h2>LIST OF STUDENTS</h2>
             </div>
 
             <?php
@@ -61,7 +61,7 @@
                         ?>
                           <div class="list-student">
                             <div class="student-identity">
-                                <div class="stdt"><p class="regnumber"><?=$student->student_id ?></p></p><?=$student->fname." ".$student->lname?><p></div>
+                                <div class="stdt"><p class="regnumber"><?=$student->regnumber ?></p></p><?=$student->fname." ".$student->lname?><p></div>
                                 <div class="add-marks">
                                     <div>
                                         <i class="fa-solid fa-plus"></i>

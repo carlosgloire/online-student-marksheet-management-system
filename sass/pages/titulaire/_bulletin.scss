@@ -1,0 +1,91 @@
+@use '../../utils/' as u;
+@use '../../utils/mixins' as *;
+//Here we are going to design the table
+.table-section {
+    font-size: 0.8rem;
+    padding: 40px 40px;
+    .top-section {
+        display: flex;
+        justify-content: space-between;
+        .school-logo {
+            img {
+                width: 70px;
+            }
+        }
+    }
+    .identity {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    table {
+        width: 100%;
+        margin: auto;
+        border-collapse: collapse;
+        tbody {
+            .head {
+                font-weight: 600;
+            }
+            tr {
+                td {
+                    padding: 10px;
+                    border: 1px solid var(--blackColor);
+                }
+            }
+        }
+    }
+    .marks-content {
+        margin-top: 30px;
+        display: grid;
+        gap: 10px;
+        -webkit-column-gap: 10px;
+        grid-template-columns: auto auto auto auto;
+        .bulletin-result {
+            border-bottom: 1px solid var(--blackColor);
+            border-right: 1px solid var(--blackColor);
+            border-left: 1px solid var(--blackColor);
+            h4,
+            p {
+                padding: 5px;
+                border-top: 1px solid var(--blackColor);
+            }
+        }
+    }
+    .admitted {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+        margin-top: 20px;
+        justify-content: flex-end;
+        gap: 10px;
+        font-size: 1.2rem;
+        -webkit-column-gap: 10px;
+        i {
+            font-size: 1rem;
+            color: green;
+        }
+    }
+    .principal-signature {
+        margin-top: 40px;
+        display: grid;
+        text-align: center;
+        justify-content: center;
+        img {
+            width: 180px;
+        }
+    }
+    .print {
+        display: flex;
+        justify-content: flex-end;
+        .printButton {
+            margin-top: 20px;
+            border: none;
+            padding: 10px 30px;
+            color: var(--whiteColor);
+            font-weight: 700;
+            cursor: pointer;
+            background-color: var(--blueColor);
+        }
+    }
+}

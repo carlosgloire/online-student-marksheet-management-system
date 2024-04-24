@@ -69,7 +69,7 @@
                     <i class="fa-regular fa-circle-dot tutor-icon"></i>
                     <h2>Bulletin</h2>
                     <div class="click-div">
-                        <a href="#">View in details</a>
+                        <a href="bulletin/bulletin.php">View in details</a>
                         <i class="fa-regular fa-hand-point-up"></i>
                     </div>
                 </div>

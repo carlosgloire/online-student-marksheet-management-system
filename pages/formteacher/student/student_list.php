@@ -7,7 +7,7 @@
     logout_formteacher2();
     verifysession2();
     $request = $db->prepare("SELECT * FROM students_per_class WHERE class_id = :class_id ");
-    $request->execute(array('class_id'=>$_SESSION['class_id']));
+    $request->execute( array('class_id'=>$_SESSION['class_id']));
     $students = $request->fetchAll(PDO::FETCH_OBJ)
    
 ?>

@@ -734,4 +734,87 @@ label {
 .tutor-content .tutor-item:hover {
   box-shadow: 0px 15px 20px var(--grayShadow);
   transform: translateY(10px);
+}
+
+.table-section {
+  font-size: 0.8rem;
+  padding: 40px 40px;
+}
+.table-section .top-section {
+  display: flex;
+  justify-content: space-between;
+}
+.table-section .top-section .school-logo img {
+  width: 70px;
+}
+.table-section .identity {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.table-section table {
+  width: 100%;
+  margin: auto;
+  border-collapse: collapse;
+}
+.table-section table tbody .head {
+  font-weight: 600;
+}
+.table-section table tbody tr td {
+  padding: 10px;
+  border: 1px solid var(--blackColor);
+}
+.table-section .marks-content {
+  margin-top: 30px;
+  display: grid;
+  gap: 10px;
+  -webkit-column-gap: 10px;
+  grid-template-columns: auto auto auto auto;
+}
+.table-section .marks-content .bulletin-result {
+  border-bottom: 1px solid var(--blackColor);
+  border-right: 1px solid var(--blackColor);
+  border-left: 1px solid var(--blackColor);
+}
+.table-section .marks-content .bulletin-result h4,
+.table-section .marks-content .bulletin-result p {
+  padding: 5px;
+  border-top: 1px solid var(--blackColor);
+}
+.table-section .admitted {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  justify-content: flex-end;
+  gap: 10px;
+  font-size: 1.2rem;
+  -webkit-column-gap: 10px;
+}
+.table-section .admitted i {
+  font-size: 1rem;
+  color: green;
+}
+.table-section .principal-signature {
+  margin-top: 40px;
+  display: grid;
+  text-align: center;
+  justify-content: center;
+}
+.table-section .principal-signature img {
+  width: 180px;
+}
+.table-section .print {
+  display: flex;
+  justify-content: flex-end;
+}
+.table-section .print .printButton {
+  margin-top: 20px;
+  border: none;
+  padding: 10px 30px;
+  color: var(--whiteColor);
+  font-weight: 700;
+  cursor: pointer;
+  background-color: var(--blueColor);
 }/*# sourceMappingURL=index.css.map */
