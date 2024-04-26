@@ -761,7 +761,7 @@ label {
 .table-section table tbody .head {
   font-weight: 600;
 }
-.table-section table tbody tr td {
+.table-section table tbody tr th, .table-section table tbody tr td {
   padding: 10px;
   border: 1px solid var(--blackColor);
 }
@@ -770,6 +770,7 @@ label {
   display: grid;
   gap: 10px;
   -webkit-column-gap: 10px;
+  margin-bottom: 30px;
   grid-template-columns: auto auto auto auto;
 }
 .table-section .marks-content .bulletin-result {

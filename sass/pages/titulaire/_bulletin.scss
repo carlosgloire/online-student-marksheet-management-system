@@ -4,6 +4,8 @@
 .table-section {
     font-size: 0.8rem;
     padding: 40px 40px;
+
+
     .top-section {
         display: flex;
         justify-content: space-between;
@@ -28,7 +30,7 @@
                 font-weight: 600;
             }
             tr {
-                td {
+                th,td {
                     padding: 10px;
                     border: 1px solid var(--blackColor);
                 }
@@ -40,6 +42,7 @@
         display: grid;
         gap: 10px;
         -webkit-column-gap: 10px;
+        margin-bottom: 30px;
         grid-template-columns: auto auto auto auto;
         .bulletin-result {
             border-bottom: 1px solid var(--blackColor);

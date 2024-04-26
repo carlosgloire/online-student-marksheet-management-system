@@ -10,7 +10,7 @@
         </a>
         <a class="home hover" href="../formteacher_interface.php">
             <i class="fa-solid fa-globe"></i>
-            <p>Titulaire</p>
+            <p>Form teacher</p>
         </a>
         <form action="" method="post">
             <button name="logout">
