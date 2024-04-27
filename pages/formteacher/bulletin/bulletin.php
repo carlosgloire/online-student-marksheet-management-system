@@ -145,72 +145,118 @@ if ($result_students->num_rows > 0) {
         ?>
 <div class="marks-content">
     <?php 
-  // Loop through each trimester
-foreach ($trimesters as $trimester) {
-    // Check if there are any courses with marks in this trimester for the student
-    $sql_course_check = "SELECT COUNT(*) AS course_count
-                         FROM marksheets ms
-                         JOIN trimeters t ON ms.trim_id = t.trim_id
-                         WHERE t.trimester_name = '$trimester' AND ms.student_id = $student_id";
-    $result_course_check = $conn->query($sql_course_check);
-    $course_count = 0;
-    if ($result_course_check->num_rows > 0) {
-        $row_course_check = $result_course_check->fetch_assoc();
-        $course_count = $row_course_check['course_count'];
-    }
+    // Initialize variables for Grand Total and Overall Rank
+    $grand_total = 0;
+    $overall_rank = 0;
 
-    // Check if there are any marks for this trimester for the student
-    $sql_total_marks = "SELECT SUM(SQ + comp) AS total
-                        FROM marksheets ms
-                        JOIN trimeters t ON ms.trim_id = t.trim_id
-                        WHERE t.trimester_name = '$trimester' AND ms.student_id = $student_id";
-    $result_total_marks = $conn->query($sql_total_marks);
-    $total_marks = 0;
-    if ($result_total_marks->num_rows > 0) {
-        $row_total_marks = $result_total_marks->fetch_assoc();
-        $total_marks = $row_total_marks['total'];
-    }
+    // Array to store total marks for each trimester
+    $trimester_totals = array();
 
-    // If there are no courses with marks in this trimester, student is "Not classified"
-    if ($course_count == 0) {
-        echo "<div class='bulletin-result $trimester'>
-                <h4>$trimester</h4>";
-        echo "<p>Place: <span>Not classified</span></p>";
-        echo "<p>Total: Not classified</p>
-              </div>";
-    } else {
-        // Calculate rank for the trimester
-        $sql_rank = "SELECT COUNT(*) + 1 AS rank
-                     FROM (
-                         SELECT SUM(SQ + comp) AS total
-                         FROM marksheets ms
-                         JOIN trimeters t ON ms.trim_id = t.trim_id
-                         WHERE t.trimester_name = '$trimester'
-                         GROUP BY ms.student_id
-                         HAVING total > $total_marks
-                     ) AS ranks";
-        $result_rank = $conn->query($sql_rank);
-        $rank = 0;
-        if ($result_rank->num_rows > 0) {
-            $row_rank = $result_rank->fetch_assoc();
-            $rank = $row_rank['rank'];
+    // Loop through each trimester
+    foreach ($trimesters as $trimester) {
+        // Check if there are any courses with marks in this trimester for the student
+        $sql_course_check = "SELECT COUNT(*) AS course_count
+                             FROM marksheets ms
+                             JOIN trimeters t ON ms.trim_id = t.trim_id
+                             WHERE t.trimester_name = '$trimester' AND ms.student_id = $student_id";
+        $result_course_check = $conn->query($sql_course_check);
+        $course_count = 0;
+        if ($result_course_check->num_rows > 0) {
+            $row_course_check = $result_course_check->fetch_assoc();
+            $course_count = $row_course_check['course_count'];
         }
 
-        // Display the total marks and rank for the trimester
-        echo "<div class='bulletin-result $trimester'>
-                <h4>$trimester</h4>";
-        echo "<p>Place: <span>" . ($rank > 0 ? $rank : 'Not classified') . "</span></p>";
-        echo "<p>Total: $total_marks</p>
-              </div>";
-    }
-}
+        // Check if there are any marks for this trimester for the student
+        $sql_total_marks = "SELECT SUM(SQ + comp) AS total
+                            FROM marksheets ms
+                            JOIN trimeters t ON ms.trim_id = t.trim_id
+                            WHERE t.trimester_name = '$trimester' AND ms.student_id = $student_id";
+        $result_total_marks = $conn->query($sql_total_marks);
+        $total_marks = 0;
+        if ($result_total_marks->num_rows > 0) {
+            $row_total_marks = $result_total_marks->fetch_assoc();
+            $total_marks = $row_total_marks['total'];
+        }
 
-?>
-    <div class="bulletin-result tot-gen">
-        <h4>Total general</h4>
-        <!-- You can calculate the total marks and display it here -->
-    </div>
+        // If there are no courses with marks in this trimester, student is "Not classified"
+        if ($course_count == 0) {
+            echo "<div class='bulletin-result $trimester'>
+                    <h4>$trimester</h4>";
+            echo "<p>Rank: <span>Not classified</span></p>";
+            echo "<p>Total: Not classified</p>
+                  </div>";
+        } else {
+            // Calculate rank for the trimester
+            $sql_rank = "SELECT COUNT(*) + 1 AS rank
+                         FROM (
+                             SELECT SUM(SQ + comp) AS total
+                             FROM marksheets ms
+                             JOIN trimeters t ON ms.trim_id = t.trim_id
+                             WHERE t.trimester_name = '$trimester'
+                             GROUP BY ms.student_id
+                             HAVING total > $total_marks
+                         ) AS ranks";
+            $result_rank = $conn->query($sql_rank);
+            $rank = 0;
+            if ($result_rank->num_rows > 0) {
+                $row_rank = $result_rank->fetch_assoc();
+                $rank = $row_rank['rank'];
+            }
+
+            // Display the total marks and rank for the trimester
+            echo "<div class='bulletin-result $trimester'>
+                    <h4>$trimester</h4>";
+            echo "<p>Rank: <span>" . ($rank > 0 ? $rank : 'Not classified') . "</span></p>";
+            echo "<p>Total: $total_marks</p>
+                  </div>";
+
+            // Store total marks for this trimester
+            $trimester_totals[$trimester] = $total_marks;
+        }
+
+        // Add the total marks for this trimester to the Grand Total
+        $grand_total += $total_marks;
+    }
+
+    // Check if the student is "Not classified" for all trimesters, if so, skip ranking for Grand Total
+    $all_trimesters_not_classified = true;
+    foreach ($trimester_totals as $total) {
+        if ($total != 0) {
+            $all_trimesters_not_classified = false;
+            break;
+        }
+    }
+
+    // Calculate the overall rank based on Grand Total if the student is not "Not classified" for all trimesters
+    if (!$all_trimesters_not_classified) {
+        $sql_overall_rank = "SELECT COUNT(*) + 1 AS rank
+                             FROM (
+                                 SELECT SUM(SQ + comp) AS total
+                                 FROM marksheets ms
+                                 WHERE ms.student_id != $student_id
+                                 GROUP BY ms.student_id
+                                 HAVING total > $grand_total
+                             ) AS ranks";
+        $result_overall_rank = $conn->query($sql_overall_rank);
+        if ($result_overall_rank->num_rows > 0) {
+            $row_overall_rank = $result_overall_rank->fetch_assoc();
+            $overall_rank = $row_overall_rank['rank'];
+        }
+    }
+
+    // Display the Grand Total and Overall Rank
+    echo "<div class='bulletin-result tot-gen'>
+            <h4>Grand Total</h4>";
+    if ($all_trimesters_not_classified) {
+        echo "<p>Total: Not classified</p>";
+    } else {
+        echo "<p>Total: $grand_total</p>";
+        echo "<p>Overall Rank: " . ($overall_rank > 0 ? $overall_rank : 'Not classified') . "</p>";
+    }
+    echo "</div>";
+    ?>
 </div>
+
 
     
 
