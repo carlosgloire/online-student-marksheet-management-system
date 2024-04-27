@@ -67,7 +67,7 @@ if ($result_students->num_rows > 0) {
 
         echo "<table>
                 <tr>
-                    <th>Course</th>";
+                    <th>Modules</th>";
         // Output empty header cells for the trimester titles
         foreach ($trimesters as $trimester) {
             echo "<th colspan='6'>$trimester</th>";
@@ -145,20 +145,40 @@ if ($result_students->num_rows > 0) {
         ?>
 <div class="marks-content">
     <?php 
-    // Loop through each trimester
-    foreach ($trimesters as $trimester) {
-        // Calculate total marks for the trimester
-        $sql_total_marks = "SELECT SUM(SQ + comp) AS total
-                            FROM marksheets ms
-                            JOIN trimeters t ON ms.trim_id = t.trim_id
-                            WHERE t.trimester_name = '$trimester' AND ms.student_id = $student_id";
-        $result_total_marks = $conn->query($sql_total_marks);
-        $total_marks = 0;
-        if ($result_total_marks->num_rows > 0) {
-            $row_total_marks = $result_total_marks->fetch_assoc();
-            $total_marks = $row_total_marks['total'];
-        }
+  // Loop through each trimester
+foreach ($trimesters as $trimester) {
+    // Check if there are any courses with marks in this trimester for the student
+    $sql_course_check = "SELECT COUNT(*) AS course_count
+                         FROM marksheets ms
+                         JOIN trimeters t ON ms.trim_id = t.trim_id
+                         WHERE t.trimester_name = '$trimester' AND ms.student_id = $student_id";
+    $result_course_check = $conn->query($sql_course_check);
+    $course_count = 0;
+    if ($result_course_check->num_rows > 0) {
+        $row_course_check = $result_course_check->fetch_assoc();
+        $course_count = $row_course_check['course_count'];
+    }
 
+    // Check if there are any marks for this trimester for the student
+    $sql_total_marks = "SELECT SUM(SQ + comp) AS total
+                        FROM marksheets ms
+                        JOIN trimeters t ON ms.trim_id = t.trim_id
+                        WHERE t.trimester_name = '$trimester' AND ms.student_id = $student_id";
+    $result_total_marks = $conn->query($sql_total_marks);
+    $total_marks = 0;
+    if ($result_total_marks->num_rows > 0) {
+        $row_total_marks = $result_total_marks->fetch_assoc();
+        $total_marks = $row_total_marks['total'];
+    }
+
+    // If there are no courses with marks in this trimester, student is "Not classified"
+    if ($course_count == 0) {
+        echo "<div class='bulletin-result $trimester'>
+                <h4>$trimester</h4>";
+        echo "<p>Place: <span>Not classified</span></p>";
+        echo "<p>Total: Not classified</p>
+              </div>";
+    } else {
         // Calculate rank for the trimester
         $sql_rank = "SELECT COUNT(*) + 1 AS rank
                      FROM (
@@ -183,7 +203,9 @@ if ($result_students->num_rows > 0) {
         echo "<p>Total: $total_marks</p>
               </div>";
     }
-    ?>
+}
+
+?>
     <div class="bulletin-result tot-gen">
         <h4>Total general</h4>
         <!-- You can calculate the total marks and display it here -->
