@@ -143,68 +143,53 @@ if ($result_students->num_rows > 0) {
 
         echo "</table>";
         ?>
-        <div class="marks-content">
-        <?php 
-        // Now, let's calculate and display the rankings for each trimester
-        foreach ($trimesters as $trimester) {
-            // Initialize total marks for the trimester
-            $total_trimester_marks = 0;
-    
-            // Fetch all students and calculate their total marks for the current trimester
-            foreach ($courses as $course) {
-                // Fetch marks for the current course, trimester, and student
-                $sql_marks = "SELECT ms.SQ, ms.comp
+<div class="marks-content">
+    <?php 
+    // Loop through each trimester
+    foreach ($trimesters as $trimester) {
+        // Calculate total marks for the trimester
+        $sql_total_marks = "SELECT SUM(SQ + comp) AS total
                             FROM marksheets ms
                             JOIN trimeters t ON ms.trim_id = t.trim_id
-                            JOIN courses co ON ms.course_id = co.course_id
-                            WHERE co.course_name = '{$course['course_name']}' AND t.trimester_name = '$trimester' AND ms.student_id = $student_id ";
-                $result_marks = $conn->query($sql_marks);
-    
-                if ($result_marks->num_rows > 0) {
-                    // If marks are found, calculate $tot and add it to the total for the trimester
-                    $row_marks = $result_marks->fetch_assoc();
-                    $av=($row_marks["SQ"] + $row_marks["comp"] )/2;
-                    $tot=$av * $course['coefficient'];
-                    $total_trimester_marks += $tot;
-                }
-            }
-    
-            // Display the total marks for the trimester
-            echo "<div class='bulletin-result $trimester'>
-                    <h4>$trimester</h4>";
-            if ($total_trimester_marks > 0) {
-                // Calculate the rank based on the total marks
-                $rank = 1;
-                foreach ($trimesters as $other_trimester) {
-                    if ($other_trimester != $trimester) {
-                        // If there are other trimesters, increment the rank if their total is greater
-                        $sql_other_total = "SELECT SUM(SQ + comp) AS total
-                                            FROM marksheets
-                                            JOIN trimeters t ON marksheets.trim_id = t.trim_id
-                                            WHERE t.trimester_name = '$other_trimester'
-                                            GROUP BY marksheets.student_id";
-                        $result_other_total = $conn->query($sql_other_total);
-                        while ($row_other_total = $result_other_total->fetch_assoc()) {
-                            if ($row_other_total['total'] > $total_trimester_marks) {
-                                $rank++;
-                            }
-                        }
-                    }
-                }
-                echo "<p>Place: <span>$rank</span></p>";
-            } else {
-                // If total marks are 0, display "Not classified"
-                echo "<p>Place: <span>Not classified</span></p>";
-            }
-            echo "<p>Total: $total_trimester_marks</p>
-                  </div>";
+                            WHERE t.trimester_name = '$trimester' AND ms.student_id = $student_id";
+        $result_total_marks = $conn->query($sql_total_marks);
+        $total_marks = 0;
+        if ($result_total_marks->num_rows > 0) {
+            $row_total_marks = $result_total_marks->fetch_assoc();
+            $total_marks = $row_total_marks['total'];
         }
-        ?>
-        <div class="bulletin-result tot-gen">
-            <h4>Total general</h4>
-            <!-- You can calculate the total marks and display it here -->
-        </div>
+
+        // Calculate rank for the trimester
+        $sql_rank = "SELECT COUNT(*) + 1 AS rank
+                     FROM (
+                         SELECT SUM(SQ + comp) AS total
+                         FROM marksheets ms
+                         JOIN trimeters t ON ms.trim_id = t.trim_id
+                         WHERE t.trimester_name = '$trimester'
+                         GROUP BY ms.student_id
+                         HAVING total > $total_marks
+                     ) AS ranks";
+        $result_rank = $conn->query($sql_rank);
+        $rank = 0;
+        if ($result_rank->num_rows > 0) {
+            $row_rank = $result_rank->fetch_assoc();
+            $rank = $row_rank['rank'];
+        }
+
+        // Display the total marks and rank for the trimester
+        echo "<div class='bulletin-result $trimester'>
+                <h4>$trimester</h4>";
+        echo "<p>Place: <span>" . ($rank > 0 ? $rank : 'Not classified') . "</span></p>";
+        echo "<p>Total: $total_marks</p>
+              </div>";
+    }
+    ?>
+    <div class="bulletin-result tot-gen">
+        <h4>Total general</h4>
+        <!-- You can calculate the total marks and display it here -->
     </div>
+</div>
+
     
 
         <div class="admitted">
