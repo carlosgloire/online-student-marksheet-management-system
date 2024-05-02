@@ -10,6 +10,7 @@ if (isset($_GET['course_id']) && !empty($_GET['course_id'])) {
     $infos = $recupcourseid->fetch();
     if($infos){
         $courseId_fetched= $infos['course_id'];
+        $coefficient=$infos['coefficient'];
     }
     else{
         session_destroy();
@@ -25,7 +26,7 @@ if (isset($_POST['add'])) {
     $trimester=htmlspecialchars($_POST['courses']);
     $sequence = htmlspecialchars($_POST['sequence']);
     $composition = htmlspecialchars($_POST['composition']);
-  
+    $total=(($sequence + $composition)/2) * $coefficient;
     if(empty($trimester)){
         $error = "Please select the trimester";
     }
@@ -48,9 +49,10 @@ if (isset($_POST['add'])) {
             $error = "You have already given the marks to this student in this existing module in sequence and composition";
         }  
         else{
-            $query = $db->prepare('INSERT INTO marksheets (SQ,comp,student_id,course_id,trim_id,class_id) VALUES (:SQ,:comp,:student_id,:course_id,:trim_id,:class_id)');
+            $query = $db->prepare('INSERT INTO marksheets (SQ,comp,total,student_id,course_id,trim_id,class_id) VALUES (:SQ,:comp,:total,:student_id,:course_id,:trim_id,:class_id)');
             $query->bindParam(':SQ', $sequence);
             $query->bindParam(':comp', $composition);
+            $query->bindParam(':total', $total);
             $query->bindParam(':student_id', $_SESSION['studentID']);
             $query->bindParam(':course_id', $id);
             $query->bindParam(':trim_id', $trimester);

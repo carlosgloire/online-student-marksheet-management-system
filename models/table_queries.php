@@ -47,6 +47,7 @@ $sql_students = "SELECT s.*, c.class_name
                  WHERE s.class_id = $class_id";
 $result_students = $conn->query($sql_students);
 
+//Count students within a class
 $stmt=$db->prepare("SELECT COUNT(DISTINCT spc.student_id)  as studentID, c.* FROM students_per_class spc LEFT JOIN classes c ON spc.class_id=c.class_id WHERE c.class_id ={$_SESSION['class_id']}");
 $stmt->execute();
 $countstudent=$stmt->fetchAll(PDO::FETCH_OBJ);

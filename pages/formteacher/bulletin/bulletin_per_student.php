@@ -1,6 +1,7 @@
 <?php 
 session_start();
 require_once('../../../database/DBConnection.php');
+
 ?>
 
 <!DOCTYPE html>
@@ -13,10 +14,22 @@ require_once('../../../database/DBConnection.php');
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Outfit:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Bulletins</title>
+    <title>Bulletin</title>
+    <style>
+        @media print {
+
+
+            /* Ensure marks-content div takes 100% width */
+            .marks-content {
+                width: 100% !important;
+            }
+            .printButton {
+                display: none;
+            }
+        }
+    </style>
 </head>
 <body>
 
@@ -24,17 +37,30 @@ require_once('../../../database/DBConnection.php');
     <?php
 require_once('../../../models/table_queries.php');
 
-if ($result_students->num_rows > 0) {
-    // Loop through each student
-    while($row_student = $result_students->fetch_assoc()) {
-        $student_id = $row_student["student_id"];
-        $regnumber = $row_student["regnumber"];
-        $student_name = $row_student["fname"];
-        $student_lname = $row_student["lname"];
-        $class_name = $row_student["class_name"];
-        $parentAdress = $row_student["parent_address"];
-        $Dob = $row_student["Dob"];
-        $Pob = $row_student["Pob"];
+if (isset($_GET['student_id']) && !empty($_GET['student_id'])) {
+    // Getting the form teacher id
+    $id = $_GET['student_id'];
+    $request = $conn->prepare("SELECT s.*, c.class_name
+    FROM students_per_class s
+    JOIN classes c ON s.class_id = c.class_id
+    WHERE s.class_id = ? AND student_id = ?");
+
+    $request->bind_param("ii", $class_id, $id);
+    $request->execute();
+
+    // Fetch the results
+    $stmt = $request->get_result();
+    $row = $stmt->fetch_assoc();
+
+    if ($row) {
+        $student_id = $row["student_id"];
+        $regnumber = $row["regnumber"];
+        $student_name = $row["fname"];
+        $student_lname = $row["lname"];
+        $class_name = $row["class_name"];
+        $parentAdress = $row["parent_address"];
+        $Dob = $row["Dob"];
+        $Pob = $row["Pob"];
         ?>
         <div class="top-section">
             <div class="bulletin-title">
@@ -52,15 +78,15 @@ if ($result_students->num_rows > 0) {
             <div>
                 <p>Registration number: <span><?= $regnumber?></span></p>
                 <p>Names: <strong><?= $student_name.' '. $student_lname?></strong></p>
-                <p>Parent adress: <span><?= $parentAdress?></span></p>
+                <p>Parent address: <span><?= $parentAdress?></span></p>
             </div>
             <div>
-                <p>Classe: <?= $class_name?></p>
-                <p>Date of the birth: <span><?=$Dob?></span></p>
-                <p>Place of the birth: <span><?=$Pob?></span></p>
+                <p>Class: <?= $class_name?></p>
+                <p>Date of Birth: <span><?=$Dob?></span></p>
+                <p>Place of Birth: <span><?=$Pob?></span></p>
             </div>
             <div>
-                <p>Students: <span><?php foreach($countstudent as $numberof_student)echo$numberof_student->studentID ?></span></p>
+                <p>Students: <span><?php foreach($countstudent as $numberof_student) echo $numberof_student->studentID ?></span></p>
             </div>
         </div>
         <?php
@@ -102,7 +128,8 @@ if ($result_students->num_rows > 0) {
                             WHERE co.course_name = '{$course['course_name']}' AND t.trimester_name = '$trimester' AND ms.student_id = $student_id ";
                 $result_marks = $conn->query($sql_marks);
 
-                if ($result_marks->num_rows > 0) {
+                if (mysqli_num_rows($result_marks) > 0) {
+                    {
                     // If marks are found, display them
                     $row_marks = $result_marks->fetch_assoc();
                     $av=($row_marks["SQ"] + $row_marks["comp"] )/2;
@@ -133,7 +160,8 @@ if ($result_students->num_rows > 0) {
 
 
                     <?php
-                } else {
+                }
+             } else {
                     // If no marks are found, display empty cells
                     echo "<td></td><td></td><td></td><td></td><td></td><td></td>";
                 }
@@ -272,18 +300,54 @@ if ($result_students->num_rows > 0) {
         </div>
 
         <div class="print">
-            <a  class="printButton" href="bulletin_per_student.php?student_id=<?=$student_id?>" >Print this bulletin</a>
+            <button class="printButton" onclick="printBulletin()">Print</button>
         </div>
         <?php
-    }
-} else {
-    echo "<p style='color:red; text-align:center;font-size:1.5rem'>0 results : to display bulletins there should be modules added in the class !!</p>";
+    
+}  else {
+    
+    echo '<script>alert("student not found");</script>';
+    echo '<script>window.location.href="bulletin.php";</script>';
+    exit;
+
 }
 
-$conn->close();
+$conn->close(); // Close connection
+}
 ?>
 
 </section>
+<script>
+  // JavaScript function to print the bulletin
+function printBulletin() {
+    // Get the first name and last name of the student from PHP
+    var firstName = "<?php echo $student_name; ?>";
+    var lastName = "<?php echo $student_lname; ?>";
+    
+    // Combine the first name and last name
+    var studentName = firstName + " " + lastName;
+    
+    // Set the title of the document to include the student name
+    document.title = "Bulletin - " + studentName;
 
+    // Hide specific elements before printing
+    var elementsToHide = document.querySelectorAll('.date-time, .page-url');
+    elementsToHide.forEach(function(element) {
+        element.style.display = 'none';
+    });
+
+    // Trigger the browser's print dialog
+    window.print();
+
+    // Restore the visibility of hidden elements after printing
+    elementsToHide.forEach(function(element) {
+        element.style.display = '';
+    });
+
+    // Restore the original title
+    document.title = "Bulletin";
+}
+
+</script>
 </body>
 </html>

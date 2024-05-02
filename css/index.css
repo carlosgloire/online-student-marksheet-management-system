@@ -811,11 +811,11 @@ label {
   justify-content: flex-end;
 }
 .table-section .print .printButton {
-  margin-top: 20px;
   border: none;
   padding: 10px 30px;
   color: var(--whiteColor);
   font-weight: 700;
   cursor: pointer;
   background-color: var(--blueColor);
+  margin-bottom: 20px;
 }/*# sourceMappingURL=index.css.map */

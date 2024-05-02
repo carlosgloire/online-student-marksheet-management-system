@@ -47,13 +47,13 @@
                 <div class="input-content">
                     <div class="all-inputs">
                         <label for="name">Sequence</label>
-                        <input type="number" name="sequence" value="" placeholder="Enter marks" >
+                        <input type="text" name="sequence" value="" placeholder="Enter marks" >
                     </div>
                 </div>
                 <div class="input-content">
                     <div class="all-inputs">
                         <label for="name">Composition</label>
-                        <input type="number" name="composition" value="" placeholder="Enter marks" >
+                        <input type="text" name="composition" value="" placeholder="Enter marks" >
                     </div>
                 </div>
                 <div class="btn">
