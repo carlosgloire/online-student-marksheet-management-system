@@ -30,7 +30,6 @@
                     <div class="all-inputs">
                         <label for="email">Trimeters:</label>
                        <select name="courses" id="courses">
-                        <option value=" ">Select the trimester</option>
                        <?php
                             $query = $db->prepare("SELECT * FROM trimeters ORDER BY trim_id ASC");
                             $query->execute();
@@ -47,13 +46,13 @@
                 <div class="input-content">
                     <div class="all-inputs">
                         <label for="name">Sequence</label>
-                        <input type="text" name="sequence" value="" placeholder="Enter marks" >
+                        <input type="number" step="0.1" name="sequence" value="" placeholder="Enter marks" >
                     </div>
                 </div>
                 <div class="input-content">
                     <div class="all-inputs">
                         <label for="name">Composition</label>
-                        <input type="text" name="composition" value="" placeholder="Enter marks" >
+                        <input type="number" step="0.1" name="composition" value="" placeholder="Enter marks" >
                     </div>
                 </div>
                 <div class="btn">
@@ -62,6 +61,7 @@
             </form>
             <p class="error"><?= $error?></p><p class="success"><?= $success ?></p>
         </div>
+        <a href="../formteacher_interface.php" style="color:#064469;font-size:1.8rem;" title="Go back to dashboard"><i class="fa-regular fa-circle-left"></i></a>
     </section>
 </body>
 

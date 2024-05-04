@@ -140,11 +140,11 @@ if (isset($_GET['student_id']) && !empty($_GET['student_id'])) {
                         $total_trimester_marks[$trimester] = 0;
                     }
                     $total_trimester_marks[$trimester] += $tot;
-                    ?> <?= !empty($row_marks["SQ"]) ? "<td>{$row_marks['SQ']}</td>" : "<td></td>"; ?>
-                    <?= !empty($row_marks["comp"]) ? "<td>{$row_marks['comp']}</td>" : "<td></td>"; ?>
+                    ?> <?= !empty($row_marks["SQ"]) ? "<td>{$row_marks['SQ']}</td>" : "<td>0</td>"; ?>
+                    <?= !empty($row_marks["comp"]) ? "<td>{$row_marks['comp']}</td>" : "<td>0</td>"; ?>
                     <?= !empty($av) ? "<td>{$av}</td>" : "<td></td>"; ?>
-                    <?= !empty($coefficient) ? "<td>{$coefficient}</td>" : "<td></td>"; ?>
-                    <?= !empty($tot) ? "<td>{$tot}</td>" : "<td></td>"; ?>
+                    <?= !empty($coefficient) ? "<td>{$coefficient}</td>" : "<td>0</td>"; ?>
+                    <?= !empty($tot) ? "<td>{$tot}</td>" : "<td>0</td>"; ?>
                     <?= empty($av) ? "<td></td>" :
                         ($av < 10 ? "<td>F</td>" :
                             ($av >= 10 && $av < 12 ? "<td>E</td>" :
@@ -158,7 +158,7 @@ if (isset($_GET['student_id']) && !empty($_GET['student_id'])) {
                             )
                         ); ?>
 
-
+                 
                     <?php
                 }
              } else {

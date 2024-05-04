@@ -21,6 +21,8 @@ require_once('../../../database/DBConnection.php');
 <body>
 
 <section class="table-section">
+    <a href="../formteacher_interface.php" style="color:#064469;font-size:1.8rem;" title="Go back to dashboard"><i class="fa-regular fa-circle-left"></i></a>
+    <h2 style="text-align: center; font-weight:normal">ALL STUDENTS BULLETIN</h2>
     <?php
 require_once('../../../models/table_queries.php');
 
@@ -113,11 +115,11 @@ if ($result_students->num_rows > 0) {
                         $total_trimester_marks[$trimester] = 0;
                     }
                     $total_trimester_marks[$trimester] += $tot;
-                    ?> <?= !empty($row_marks["SQ"]) ? "<td>{$row_marks['SQ']}</td>" : "<td></td>"; ?>
-                    <?= !empty($row_marks["comp"]) ? "<td>{$row_marks['comp']}</td>" : "<td></td>"; ?>
-                    <?= !empty($av) ? "<td>{$av}</td>" : "<td></td>"; ?>
+                    ?> <?= !empty($row_marks["SQ"]) ? "<td>{$row_marks['SQ']}</td>" : "<td>0</td>"; ?>
+                    <?= !empty($row_marks["comp"]) ? "<td>{$row_marks['comp']}</td>" : "<td>0</td>"; ?>
+                    <?= !empty($av) ? "<td>{$av}</td>" : "<td>0</td>"; ?>
                     <?= !empty($coefficient) ? "<td>{$coefficient}</td>" : "<td></td>"; ?>
-                    <?= !empty($tot) ? "<td>{$tot}</td>" : "<td></td>"; ?>
+                    <?= !empty($tot) ? "<td>{$tot}</td>" : "<td>0</td>"; ?>
                     <?= empty($av) ? "<td></td>" :
                         ($av < 10 ? "<td>F</td>" :
                             ($av >= 10 && $av < 12 ? "<td>E</td>" :
@@ -270,9 +272,13 @@ if ($result_students->num_rows > 0) {
             <p><img src="../../../images/signature.png" alt="signature"></p>
             <h3>Armel MBIATAT DANY</h3>
         </div>
-
-        <div class="print">
-            <a  class="printButton" href="bulletin_per_student.php?student_id=<?=$student_id?>" >Print this bulletin</a>
+        <div style="display: flex; gap:5px;">
+            <div class="print">
+                <a  class="printButton" href="modify_marks.php?student_id=<?=$student_id?>" >Edit marks</a>
+            </div>
+            <div class="print">
+                <a  class="printButton" href="bulletin_per_student.php?student_id=<?=$student_id?>" >Print this bulletin</a>
+            </div>
         </div>
         <?php
     }
