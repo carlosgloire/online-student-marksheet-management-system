@@ -35,8 +35,8 @@
         <?php require_once('navbar.php')?>
         <!-- this div contain all the titulaires of different classes -->
         <div class="titulaire-container">
-            <h2>All the form teachers</h2>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellendus maxime fugit quasi et cum accusantium temporibus corrupti illo harum laborum.</p>
+            <h2>List of form teachers</h2>
+            <p>Here is the list of all form teachers and their associated classes starting from the first level up to the terminal level, they can simply be deleted and modified.</p>
 
             <!-- adding a new titulaire-->
             <div class="add-titulaire">

@@ -1,4 +1,5 @@
 <?php
+$error=null;
 session_start();
 require_once('../../../database/DBConnection.php');
 $servername = "localhost";
@@ -17,8 +18,8 @@ if (isset($_GET['student_id'], $_GET['trimester_id'], $_GET['course_id'])) {
     // Check if the form is submitted
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Retrieve the updated marks values
-        $sq = $_POST['sq'];
-        $comp = $_POST['comp'];
+        $sq = htmlspecialchars($_POST['sq']) ;
+        $comp = htmlspecialchars($_POST['comp']) ;
 
         // Fetch the coefficient of the course
         $fetch_coeff_query = "SELECT coefficient FROM courses WHERE course_id = ?";
@@ -38,16 +39,20 @@ if (isset($_GET['student_id'], $_GET['trimester_id'], $_GET['course_id'])) {
             $update_query = "UPDATE marksheets SET SQ = ?, comp = ?, total = ? WHERE student_id = ? AND trim_id = ? AND course_id = ?";
             $stmt_update = $conn->prepare($update_query);
             $stmt_update->bind_param("dddiid", $sq, $comp, $total, $student_id, $trimester_id, $course_id);
-
-            if ($stmt_update->execute()) {
-                // Marks updated successfully
-                echo '<script>alert("Marks updated successfully.");</script>';
-                echo "<script>window.location.href='modify_marks.php?student_id=$student_id';</script>";
-
-            } else {
-                // Error updating marks
-                echo '<script>alert("Error updating marks. Please try again.");</script>';
+            if(($sq <0 || $sq>20) || ($comp<0 || $comp >20)  ){
+                $error = "The marks should be less than 0 and above 20";
+            }else{
+                if ($stmt_update->execute()) {
+                    // Marks updated successfully
+                    echo '<script>alert("Marks updated successfully.");</script>';
+                    echo "<script>window.location.href='modify_marks.php?student_id=$student_id';</script>";
+    
+                } else {
+                    // Error updating marks
+                    echo '<script>alert("Error updating marks. Please try again.");</script>';
+                }
             }
+
         } else {
             // Coefficient not found
             echo '<script>alert("Coefficient not found for the course.");</script>';
@@ -90,8 +95,8 @@ if (isset($_GET['student_id'], $_GET['trimester_id'], $_GET['course_id'])) {
     />
     <title>Update Marks</title>
 </head>
-<body>
-<section class="connect-section">
+<body >
+<section class="connect-section" >
         <div class="connect">
             <h3>Update Marks</h3>
             <form action="" method="post" >
@@ -111,6 +116,9 @@ if (isset($_GET['student_id'], $_GET['trimester_id'], $_GET['course_id'])) {
                     <button type="submit" name="modify">Save changes</button>
                 </div>
             </form>
+            <p class="error"><?= $error?></p>
+            <a href="bulletin.php" style="color:#064469;font-size:1.3rem;"><i class="fa-regular fa-circle-left" title="Go to all bulletins"></i></a>
+
         </div>
     </section>
      

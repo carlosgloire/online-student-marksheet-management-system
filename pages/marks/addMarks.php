@@ -60,8 +60,8 @@
                 </div>
             </form>
             <p class="error"><?= $error?></p><p class="success"><?= $success ?></p>
+            <a href="../formteacher/formteacher_interface.php" style="color:#064469;font-size:1.3rem;"><i class="fa-regular fa-circle-left" title="Go to dashboard"></i></a>
         </div>
-        <a href="../formteacher_interface.php" style="color:#064469;font-size:1.8rem;" title="Go back to dashboard"><i class="fa-regular fa-circle-left"></i></a>
     </section>
 </body>
 

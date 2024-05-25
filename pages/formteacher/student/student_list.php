@@ -13,7 +13,17 @@
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
+<style>
+    .popup-container{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    span{
+        font-weight: bold;
+    }
+}
+</style>
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../../../css/index.css">
