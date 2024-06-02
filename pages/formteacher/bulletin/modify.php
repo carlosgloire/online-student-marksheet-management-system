@@ -98,6 +98,7 @@ if (isset($_GET['student_id'], $_GET['trimester_id'], $_GET['course_id'])) {
 <body >
 <section class="connect-section" >
         <div class="connect">
+        <a href="bulletin.php" style="color:#064469;font-size:1.3rem;"><i class="fa-regular fa-circle-left" title="Go to all bulletins"></i></a>
             <h3>Update Marks</h3>
             <form action="" method="post" >
                 <div class="input-content">
@@ -117,7 +118,6 @@ if (isset($_GET['student_id'], $_GET['trimester_id'], $_GET['course_id'])) {
                 </div>
             </form>
             <p class="error"><?= $error?></p>
-            <a href="bulletin.php" style="color:#064469;font-size:1.3rem;"><i class="fa-regular fa-circle-left" title="Go to all bulletins"></i></a>
 
         </div>
     </section>

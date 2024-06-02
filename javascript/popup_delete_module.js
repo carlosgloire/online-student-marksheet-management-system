@@ -7,7 +7,7 @@
  deleteButtons.forEach(button => {
      button.addEventListener('click', function(event) {
          event.preventDefault(); // Prevent the default link behavior
-         const studentId = this.getAttribute('data-formteacher-id');
+         const courseID = this.getAttribute('data-formteacher-id');
 
          // Show the popup
          popup.classList.remove('hidden-popup');
@@ -19,8 +19,8 @@
          });
 
          deletePopupButton.addEventListener('click', function() {
-             // Redirect to the delete page with the student ID
-             window.location.href = `delete_student.php?student_id=${studentId}`;
+             // Redirect to the delete page with the course ID
+             window.location.href = `delete_module.php?course_id=${courseID}`;
          });
      });
  });

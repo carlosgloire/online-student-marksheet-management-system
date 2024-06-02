@@ -11,7 +11,10 @@ body {
 
 
 /********** HEADER **********/
-
+textarea{
+    font-family: u.$font-poppins;
+    outline: none;
+}
 header {
     display: flex;
     align-items: center;

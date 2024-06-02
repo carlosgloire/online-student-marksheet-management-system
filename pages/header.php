@@ -7,4 +7,5 @@
             <i class="fa-solid fa-magnifying-glass"></i>
             <input type="search" placeholder="Enter something">
         </div>
+    </div>    
 </header>

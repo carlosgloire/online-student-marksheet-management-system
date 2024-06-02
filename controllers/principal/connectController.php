@@ -30,6 +30,9 @@ if(isset($_POST['signin'])){
           header("location: Formteacher.php");
           exit;
         }
+        else{
+          $error ="Incorrect Username or Password !!!";
+       }
       }
       else{
         $error ="Incorrect Username or Password !!!";

@@ -105,8 +105,8 @@ function popup_delete($record,$function,$message,$fname,$lname,$id){
             <h4>Dear <?= $function?>,</h4>
             <p><?= $message ?><br><span><?= $record->$fname." ".$record->$lname?></span> From your system?</p>
             <div class="popup-btn">
-                <button class="cancel-popup">Cancel</button>
-                <a href="delete_formTeacher.php?tutor_id=<?= $record->$id?>" class="delete-popup">Delete</a>
+                <button class="cancel-popup" style="cursor:pointer">Cancel</button>
+                <a style="cursor:pointer" href="delete_formTeacher.php?tutor_id=<?= $record->$id?>" class="delete-popup">Delete</a>
             </div>
         </div>
     </div>

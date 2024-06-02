@@ -44,14 +44,14 @@
                 <div class="input-content">
                     <div class="all-inputs">
                         <label for="email">Email:</label>
-                        <input type="email" name="email" value="<?= $email_fetched?>" placeholder="Enter the class of titulaire">
+                        <input type="text" name="email" value="<?= $email_fetched?>" placeholder="Enter the class of titulaire">
                     </div>
                 </div>
                 <div class="input-content">
                     <div class="all-inputs">
                         <label for="email">Class:</label>
                        <select name="classes" id="classes">
-                        <option value=" ">Select the class</option>
+                        <option value="select">Select the class</option>
                        <?php
                             $query = $db->prepare("SELECT * FROM classes ORDER BY class_id ASC");
                             $query->execute();
@@ -73,7 +73,7 @@
                 </div>
                 <div class="forgotten-password">
                     <p>Change password ?</p>
-                    <a href="#">click here</a>
+                    <a href="../formteacher/forgot-password.php">click here</a>
                 </div>
                 <div class="btn">
                     <button type="submit" name="modify">Save changes</button>

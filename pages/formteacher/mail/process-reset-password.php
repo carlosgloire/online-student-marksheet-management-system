@@ -28,13 +28,16 @@ if(isset($_POST['reset'])){
     elseif (strtotime($user["reset_token_expires_at"]) <= time()) {
         die("token has expired");
     }
-    
+    elseif (empty($_POST["password"])  ||  empty($_POST["password_confirmation"])) {
+        $error= "Please complete all the fields";
+    }
      // Validate password complexity
      elseif (!preg_match("#[a-zA-Z]+#", $_POST['password']) ||
      !preg_match("#[0-9]+#", $_POST['password']) ||
-     !preg_match("#[-_@%&*!$^]+#", $_POST['password'])) {
-    $error = "Your password must contain at least one letter, one number, and one of these special characters: - _ @ % & * ! $ ^";
-    }
+     !preg_match("#[\!\@\#\$\%\^\&\*\(\)\_\+\-\=\[\]\{\}\;\:\'\"\,\<\>\.\?\/\`\~\\\|\ ]+#", $_POST['password'])) {
+     $error = "Your password must contain at least one letter, one number, and one special character.";
+ }
+ 
         
     elseif ($_POST["password"] !== $_POST["password_confirmation"]) {
         $error= "Passwords must match";

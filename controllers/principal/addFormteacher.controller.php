@@ -46,6 +46,11 @@ if (isset($_POST['add'])) {
     $existing_teachername_query = $db->prepare('SELECT fname,lname FROM form_tutors WHERE fname = ? AND lname = ?');
     $existing_teachername_query->execute(array($fname,$lname));
     $existing_teachername = $existing_teachername_query->fetch();
+
+     // Check if an email is already used for another account
+     $existing_email_query = $db->prepare('SELECT email FROM form_tutors WHERE email= ?');
+     $existing_email_query->execute(array($email));
+     $existing_email = $existing_email_query->fetch();
     if(  empty($fname) || empty($lname) || empty($email) || empty($password)){
         $error = "Please complete all fields"; 
     }
@@ -54,16 +59,23 @@ if (isset($_POST['add'])) {
     }
     elseif (!preg_match($pattern, $_FILES['uploadfile']['name']) && !empty($_FILES['uploadfile']['name'])) {
         $error = "Your file must be in \"jpg, jpeg or png\" format";
-    } elseif ($filesize > 3000000) {
-        $error = "Your file must not exceed 3Mb";
+    } elseif ($filesize > 5000000) {
+        $error = "Your file must not exceed 5Mb";
     }
-
+    elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $error = "Your email is incorrect";
+    }
+    elseif($existing_email){
+        $error = "This email has been used for another account creation on this system";  
+    }
     // Validate password complexity
     elseif (!preg_match("#[a-zA-Z]+#", $_POST['password']) ||
-            !preg_match("#[0-9]+#", $_POST['password']) ||
-            !preg_match("#[-_@%&*!$^]+#", $_POST['password'])) {
-        $error = "Your password must contain at least one letter, one number, and one of these special characters: - _ @ % & * ! $ ^";
-    } else {
+    !preg_match("#[0-9]+#", $_POST['password']) ||
+    !preg_match("#[\!\@\#\$\%\^\&\*\(\)\_\+\-\=\[\]\{\}\;\:\'\"\,\<\>\.\?\/\`\~\\\|\ ]+#", $_POST['password'])) {
+    $error = "Your password must contain at least one letter, one number, and one special character.";
+}
+
+  else {
         // Check if a form teacher is already assigned to this class
         $existing_teacher_query = $db->prepare('SELECT * FROM form_tutors WHERE class_id = ?');
         $existing_teacher_query->execute(array($id));
