@@ -23,6 +23,7 @@
 <body>
     <section class="connect-section">
         <div class="connect">
+            <a href="../formteacher/formteacher_interface.php" style="color:#064469;font-size:1.3rem;"><i class="fa-regular fa-circle-left" title="Go to dashboard"></i></a>
             <h3>Add marks</h3>
             <form action="" method="post" enctype="multipart/form-data">
                
@@ -60,7 +61,6 @@
                 </div>
             </form>
             <p class="error"><?= $error?></p><p class="success"><?= $success ?></p>
-            <a href="../formteacher/formteacher_interface.php" style="color:#064469;font-size:1.3rem;"><i class="fa-regular fa-circle-left" title="Go to dashboard"></i></a>
         </div>
     </section>
 </body>

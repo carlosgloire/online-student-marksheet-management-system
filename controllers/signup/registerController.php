@@ -17,12 +17,11 @@ if (isset($_POST['signup'])) {
     $last_name = htmlspecialchars($_POST['lname']);
     $email = htmlspecialchars($_POST['email']);
     $password = htmlspecialchars($_POST['password']);
-
     $repeat_password = htmlspecialchars($_POST['password_repeat']);
-        // Check if an email is already used for another account
-        $existing_email_query = $db->prepare('SELECT email FROM form_tutors WHERE email= ?');
-        $existing_email_query->execute(array($email));
-        $existing_email = $existing_email_query->fetch();
+    //Check if an email is already used for another account
+    $existing_email_query = $db->prepare('SELECT email FROM form_tutors WHERE email= ?');
+    $existing_email_query->execute(array($email));
+    $existing_email = $existing_email_query->fetch();
     if (empty($first_name) || empty($last_name) || empty($email) || empty($password) || empty($repeat_password)) {
         $error = "Please complete all fields";
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
