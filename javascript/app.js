@@ -15,3 +15,5 @@ closeIcon.onclick = function() {
     openIcon.classList.remove('hidden');
     closeIcon.classList.add('hidden');
 }
+
+

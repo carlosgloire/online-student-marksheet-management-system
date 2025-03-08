@@ -24,3 +24,27 @@
          });
      });
  });
+
+ /*-------------------------------/
+OUR MENU 
+---------------------------------*/
+// Get all menu icons
+const menuIcons = document.querySelectorAll('.menu-icon');
+const exitIcons = document.querySelectorAll('.exit-icon');
+const nav = document.querySelector('nav');
+
+// Loop through each menu icon
+menuIcons.forEach(function(icon) {
+    icon.addEventListener('click', function() {
+        nav.classList.add('active');
+        exitIcons.style.display = 'flex'; // Adds 'active' class to open the menu
+    });
+});
+
+// Loop through each exit icon
+exitIcons.forEach(function(icon) {
+    icon.addEventListener('click', function() {
+        nav.classList.remove('active');
+        exitIcons.style.display = 'none'; // Removes 'active' class to close the menu
+    });
+});

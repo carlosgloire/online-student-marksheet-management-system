@@ -7,12 +7,15 @@ if(isset($_POST['login'])){
    if(empty($_POST['mail']) || empty($_POST['password'])){
       $error ="Please complete all the fields!";
    }
+
    if(empty($_POST['mail'])){
       $error ="Please complete enter email address!";
    }
+
    elseif(empty($_POST['password'])){
       $error ="Please enter the password!";
    }
+
    else{
       $request = $db->prepare("SELECT mail,password FROM users WHERE mail = :mail ");
       $request->bindValue(':mail', $mail);
@@ -23,11 +26,15 @@ if(isset($_POST['login'])){
             $_SESSION['admin']=$admin;
             header("location: classes/classes.php");
             exit;
-         }
+         } 
+
          else{
             $error ="Email  or Password is incorrect!";
          }
-      } else {
+
+      } 
+      
+      else {
          $error = "No user found with this email address.";
       }
    }

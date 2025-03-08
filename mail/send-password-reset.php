@@ -35,7 +35,7 @@ if(isset($_POST['send'])){
 
             $mail = require __DIR__ . "/mailer.php";
 
-            $mail->setFrom("noreply@example.com");
+            $mail->setFrom("noreply@example.com",'STUDENT MARKSHEET MANAGEMENT SYSTEM');
             $mail->addAddress($email);
             $mail->Subject = "Password Reset";
             $mail->Body = <<<END

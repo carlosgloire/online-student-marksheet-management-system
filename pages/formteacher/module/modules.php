@@ -40,7 +40,8 @@ try {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="../../../css/index.css">
+    <link rel="stylesheet" href="../../../asset/style.css">
+    <link rel="stylesheet" href="../../../asset/responsive.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Outfit:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap" rel="stylesheet">
@@ -54,6 +55,9 @@ try {
             <h3>Dashboard</h3>
         </div>
         <div class="user">
+        <div class="our-menu">
+                <i class="fa-solid fa-bars menu-icon"></i>
+            </div>
             <div class="search">
                 <i class="fa-solid fa-magnifying-glass"></i>
                 <form action="" method="get">
@@ -72,7 +76,7 @@ try {
                 <h5><?= $_SESSION['fname'] . " " . $_SESSION['lname'] ?></h5>
             </div>
             <h2>Modules of <?= strtolower($class['class_name']) ?></h2>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Placeat sapiente quae iure maiores delectus expedita, esse saepe eos fuga nulla.</p>
+            <p>Here is the list of all the Modules in the class where the Form teacher is the only one who can add, modify and delete a Module from the class.</p>
 
             <!-- this div is for adding a new class -->
             <div class="add-module">

@@ -4,6 +4,7 @@ $error = null;
 $success = null;
 require_once('../app/Form/form.php');
 $mysqli = require(__DIR__ . "/mail/database.php");
+require(__DIR__ . "../../../database/DBConnection.php");
 
 $form = new Form('Sign up', "signup", "Sign up");
 $form->addField("text", "fname", "First name", "Enter First name");
@@ -19,7 +20,7 @@ if (isset($_POST['signup'])) {
     $password = htmlspecialchars($_POST['password']);
     $repeat_password = htmlspecialchars($_POST['password_repeat']);
     //Check if an email is already used for another account
-    $existing_email_query = $db->prepare('SELECT email FROM form_tutors WHERE email= ?');
+    $existing_email_query = $db->prepare('SELECT mail FROM users WHERE mail= ?');
     $existing_email_query->execute(array($email));
     $existing_email = $existing_email_query->fetch();
     if (empty($first_name) || empty($last_name) || empty($email) || empty($password) || empty($repeat_password)) {

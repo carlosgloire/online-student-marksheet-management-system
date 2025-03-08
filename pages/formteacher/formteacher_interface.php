@@ -5,14 +5,15 @@
     //require_once('delete_formTeacher.php');
     logout_formteacher();
     notconnected_formteacher();
-    verifysession();
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="../../css/index.css">
+    <link rel="stylesheet" href="../../asset/style.css">
+    <link rel="stylesheet" href="../../asset/responsive.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Outfit:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
@@ -37,7 +38,7 @@
             </div>
             <div class="title">
                 <h2>Form teacher </h2>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequuntur iste impedit, possimus tempore reiciendis veniam nesciunt molestiae facere eligendi aliquid iusto, voluptas voluptates blanditiis ipsum aut est odit nulla cupiditate.</p>
+                <p>Here it is the interface of the Form teacher of each class which allows him to add the students, the modules, the marks and order to draw up the report card  for each student in the class.</p>
             </div>
 
             <div class="tutor-content">

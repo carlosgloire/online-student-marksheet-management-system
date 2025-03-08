@@ -3,7 +3,7 @@
    require_once('../../functions.php');
    require_once('../../models/GenericModel.php');
    require_once('../../database/DBConnection.php');
-   verifysession();
+   
 require_once('../../controllers/formteacher/addstudent.controller.php');
 
 ?>

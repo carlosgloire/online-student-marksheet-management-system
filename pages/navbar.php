@@ -18,5 +18,8 @@
                 <p>Log out</p>
             </button>
         </form>
+        <div class="exit">   
+            <i class="fa-regular fa-circle-xmark exit-icon"></i>
+        </div>
     </div>
 </nav>

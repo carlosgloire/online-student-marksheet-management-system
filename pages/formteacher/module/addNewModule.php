@@ -11,7 +11,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="../../../css/index.css">
+    <link rel="stylesheet" href="../../../asset/style.css">
+    <link rel="stylesheet" href="../../../asset/responsive.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Outfit:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
@@ -25,6 +26,7 @@
 <body>
     <section class="connect-section">
         <div class="connect">
+        <a href="modules.php" style="color:#064469;font-size:1.3rem;"><i class="fa-regular fa-circle-left" title="Go to dashboard"></i></a>
             <?= $form->displayForm($error)?>
             <p class="error"><?= $error?></p><p class="success"><?= $success ?></p>
         </div>

@@ -31,7 +31,8 @@ try {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="../../../css/index.css">
+    <link rel="stylesheet" href="../../../asset/style.css">
+    <link rel="stylesheet" href="../../../asset/responsive.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Outfit:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap"
@@ -46,6 +47,9 @@ try {
             <h3>Dashboard</h3>
         </div>
         <div class="user">
+        <div class="our-menu">
+                <i class="fa-solid fa-bars menu-icon"></i>
+            </div>
             <div class="search">
                 <i class="fa-solid fa-magnifying-glass"></i>
                 <form action="" method="get">
@@ -67,7 +71,7 @@ try {
             </div>
             <div class="title">
                 <h2>List of Students</h2>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequuntur iste impedit, possimus tempore reiciendis veniam nesciunt molestiae facere eligendi aliquid iusto, voluptas voluptates blanditiis ipsum aut est odit nulla cupiditate.</p>
+                <p>Here is the list of all the students in the class where the Form teacher is the only one who can add, modify and delete a student from the class.</p>
             </div>
             <div class="add-student">
                 <div>

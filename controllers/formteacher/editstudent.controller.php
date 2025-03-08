@@ -37,8 +37,8 @@ if (isset($_POST['modify'])) {
     $parentAddress = htmlspecialchars($_POST['parent_address']);
 
     // Check if a student registration number already exist class
-    $existing_regnumber_query = $db->prepare("SELECT * FROM students_per_class WHERE regnumber={$_POST['regnumber']} AND class_id={$_SESSION['class_id']} ");
-    $existing_regnumber_query->execute(array());
+    $existing_regnumber_query = $db->prepare("SELECT * FROM students_per_class WHERE regnumber=? AND class_id=? ");
+    $existing_regnumber_query->execute(array($regnumber,$_SESSION['class_id']));
     $existing_regnumber = $existing_regnumber_query->fetch();
 
     // Check if a student is already exist in the class

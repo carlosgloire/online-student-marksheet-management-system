@@ -65,9 +65,10 @@ if (isset($_GET['student_id']) && !empty($_GET['student_id'])) {
         <div class="top-section">
             <div class="bulletin-title">
                 <h2>REPUBLIC OF CAMEROON</h2>
-                <h4>COLLEGE SAINT JEAN-BAPTISTE</h4>
-                <p>B.P 50 DOUALA</p>
-                <P>Phone: 1234567889</P>
+                <h4>COLLEGE SAINT JEAN-BAPTISTE OF BANGANGTE</h4>
+                <p>B.P 03 BANGANGTE</p>
+                <p>DIOCESE OF BAFOUSSAM</p>
+                <P>Phone: 243031465</P>
             </div>
             <div class="school-logo">
                 <p><img src="../../../images/logo-st-jean.png" alt=""></p>

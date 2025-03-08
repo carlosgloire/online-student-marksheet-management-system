@@ -1,0 +1,923 @@
+/***** for all the button of adding *****/
+/***** this is for all the button of our popup *****/
+/********** FONT **********/
+/********** PALETTE COLORS **********/
+:root {
+    --whiteColor: #fff;
+    --blackColor: #000;
+    --grayColor: #d0d7e1;
+    --blueColor: #064469;
+    --grayShadow: #adadad62;
+    --redColor: #cb4c46;
+    --btnColor: #efeded;
+    --blackShadow: #00000046;
+  }
+  
+  /********** BODY PROPERTIES **********/
+  body {
+    font-size: 1rem;
+    font-family: "Poppins", sans-serif;
+    background-color: var(--grayColor);
+  }
+  
+  /********** HEADER **********/
+  textarea {
+    font-family: "Poppins", sans-serif;
+    outline: none;
+  }
+  
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 30px;
+    color: var(--blueColor);
+    box-shadow: 0px 5px 15px var(--grayShadow);
+  }
+  header .user .search {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    border-radius: 25px;
+    width: -moz-fit-content;
+    width: fit-content;
+    -webkit-column-gap: 10px;
+    background-color: var(--whiteColor);
+  }
+  header .user .search i {
+    color: var(--blueColor);
+  }
+  header .user .search input {
+    background: unset;
+  }
+  
+  /********** PRINCIPAL SECTION **********/
+  .principal-Section {
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: 20% auto;
+  }
+  
+  /********** NAV BAR **********/
+  nav {
+    height: 90vh;
+    display: flex;
+    place-items: center;
+  }
+  
+  .nav-content {
+    padding-left: 30px;
+  }
+  .nav-content .home {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    width: -moz-fit-content;
+    width: fit-content;
+    color: var(--grayColor);
+    transition: width 0.8s 0.2s;
+  }
+  .nav-content .home p {
+    padding-right: 15px;
+    font-size: 0.8rem;
+  }
+  .nav-content .home i {
+    font-size: 1.5rem;
+    border-radius: 50%;
+    padding: 10px 10px;
+    color: var(--whiteColor);
+    background-color: var(--blueColor);
+  }
+  .nav-content .home:hover {
+    border-radius: 25px;
+    border-radius: 25px;
+    color: var(--whiteColor);
+    background-color: var(--blueColor);
+  }
+  .nav-content a {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    width: -moz-fit-content;
+    width: fit-content;
+    color: var(--grayColor);
+    transition: width 0.8s 0.2s;
+  }
+  .nav-content a p {
+    padding-right: 15px;
+    font-size: 0.8rem;
+  }
+  .nav-content a i {
+    font-size: 1.5rem;
+    border-radius: 50%;
+    padding: 10px 10px;
+    color: var(--blueColor);
+    background-color: var(--whiteColor);
+  }
+  .nav-content a:hover {
+    border-radius: 25px;
+    color: var(--whiteColor);
+    background-color: var(--blueColor);
+  }
+  .nav-content a:hover i {
+    color: var(--whiteColor);
+    background: none;
+  }
+  .nav-content button {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    width: -moz-fit-content;
+    width: fit-content;
+    color: var(--grayColor);
+    transition: width 0.8s 0.2s;
+    background: unset;
+  }
+  .nav-content button i {
+    font-size: 1.5rem;
+    border-radius: 50%;
+    padding: 10px 10px;
+    color: var(--blueColor);
+    background-color: var(--whiteColor);
+  }
+  .nav-content button:hover {
+    border-radius: 25px;
+    color: var(--whiteColor);
+    background-color: var(--blueColor);
+  }
+  .nav-content button:hover i {
+    color: var(--whiteColor);
+    background: none;
+  }
+  .nav-content button:hover p {
+    padding-right: 15px;
+    font-size: 0.8rem;
+  }
+  
+  /********** RIGHT CONTENT *i was adding the div for modules, i did't use the same code as classes* **********/
+  .class-content,
+  .design-modules,
+  .titulaire-container {
+    padding: 10px 40px;
+  }
+  
+  /********** FOOTER **********/
+  footer {
+    width: 100%;
+    text-align: center;
+    padding: 20px 30px;
+    color: var(--whiteColor);
+    background-color: var(--blueColor);
+  }
+  
+  /********** RESET **********/
+  * {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    box-sizing: border-box;
+  }
+  
+  /********** INPUT **********/
+  input,
+  button {
+    border: none;
+    outline: none;
+    font-family: "Poppins", sans-serif;
+  }
+  
+  .login-section {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .login-section .login-container {
+    display: flex;
+  }
+  
+  .welcome-login {
+    padding: 20px 30px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--whiteColor);
+    background-color: var(--blueColor);
+  }
+  .welcome-login div h2 {
+    margin-bottom: 15px;
+  }
+  .welcome-login div span {
+    display: flex;
+    width: -moz-fit-content;
+    width: fit-content;
+    padding: 10px 20px;
+    margin: auto;
+    margin-top: 15px;
+    border-radius: 30px;
+    border: 2px solid var(--whiteColor);
+  }
+  
+  h3 {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: var(--blueColor);
+  }
+  
+  label {
+    position: absolute;
+    margin-top: -48px;
+    margin-left: -2px;
+    padding: 1px;
+    font-size: 0.7rem;
+    color: var(--blueColor);
+    background-color: var(--whiteColor);
+  }
+  
+  .input-content .all-inputs {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    -webkit-column-gap: 10px;
+    padding: 15px 20px;
+    border-radius: 5px;
+    margin-top: 20px;
+    font-size: 0.8rem;
+    background-color: var(--whiteColor);
+    box-shadow: 0px 5px 15px var(--grayColor);
+  }
+  .input-content .all-inputs i {
+    font-size: 0.8rem;
+    color: var(--blueColor);
+  }
+  .input-content .all-inputs input {
+    width: 100%;
+    font-size: 0.8rem;
+  }
+  .input-content .all-inputs input::-moz-placeholder {
+    font-size: 0.8rem;
+  }
+  .input-content .all-inputs input::placeholder {
+    font-size: 0.8rem;
+  }
+  .input-content .all-inputs .eyes {
+    cursor: pointer;
+  }
+  .input-content .all-inputs .eyes .hidden {
+    display: none;
+  }
+  
+  .forgotten-password {
+    display: flex;
+    align-items: center;
+    font-size: 0.8rem;
+    margin-top: 15px;
+    gap: 5px;
+    -webkit-column-gap: 5px;
+  }
+  .forgotten-password a {
+    color: var(--blueColor);
+  }
+  
+  .login-form {
+    padding: 40px 50px;
+    background-color: var(--whiteColor);
+  }
+  
+  .btn {
+    margin-top: 25px;
+    margin-bottom: 20px;
+  }
+  .btn button {
+    width: 100%;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: 700;
+    cursor: pointer;
+    text-transform: uppercase;
+    color: var(--whiteColor);
+    background-color: var(--blueColor);
+  }
+  
+  .all-classes {
+    display: grid;
+    gap: 15px;
+    -webkit-column-gap: 15px;
+    margin-top: 40px;
+    grid-template-columns: auto auto auto;
+  }
+  .all-classes .classe-content {
+    padding: 20px 20px;
+    box-shadow: 0px 5px 10px var(--grayShadow);
+    color: var(--blackColor);
+  }
+  .all-classes .classe-content strong {
+    display: flex;
+    justify-content: flex-end;
+    color: var(--blueColor);
+  }
+  .all-classes .classe-content p {
+    font-size: 0.9rem;
+  }
+  .all-classes .classe-content .class-titular {
+    display: flex;
+    gap: 5px;
+    -webkit-column-gap: 5px;
+    align-items: center;
+    margin-top: 10px;
+    color: var(--blueColor);
+    font-size: 0.9rem;
+  }
+  .all-classes .classe-content:hover {
+    transition: 0.8s;
+    transition-delay: 0.2s;
+    transform: translateY(10px);
+    box-shadow: 0px 15px 20px var(--grayShadow);
+  }
+  .all-classes .icons-view {
+    padding: 5px 10px;
+    width: -moz-fit-content;
+    width: fit-content;
+    font-size: 0.8rem;
+    transition: 0.8s;
+    transition-delay: 0.2s;
+    border: 1px dashed var(--blueColor);
+  }
+  .all-classes .icons-view a,
+  .all-classes .icons-view i {
+    color: var(--blueColor);
+  }
+  .all-classes .icons-view:hover {
+    background-color: var(--blueColor);
+    border: 1px solid var(--blueColor);
+  }
+  .all-classes .icons-view:hover a,
+  .all-classes .icons-view:hover i {
+    color: var(--whiteColor);
+  }
+  
+  .add-student {
+    display: flex;
+    justify-content: flex-end;
+  }
+  .add-student div {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    -webkit-column-gap: 5px;
+    width: -moz-fit-content;
+    width: fit-content;
+    padding: 10px 15px;
+    margin-top: 10px;
+    border-radius: 5px;
+    background-color: var(--blueColor);
+  }
+  .add-student div:hover {
+    transform: translateY(0.1rem);
+  }
+  .add-student div i,
+  .add-student div a {
+    cursor: pointer;
+    font-size: 0.8rem;
+    color: var(--whiteColor);
+  }
+  
+  .add-marks {
+    display: flex;
+    justify-content: flex-end;
+  }
+  .add-marks div {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    -webkit-column-gap: 5px;
+    width: -moz-fit-content;
+    width: fit-content;
+    padding: 10px 15px;
+    margin-top: 10px;
+    border-radius: 5px;
+    background-color: var(--blueColor);
+    background-color: var(--whiteColor);
+    padding: 5px 10px;
+    margin-top: 0px;
+  }
+  .add-marks div:hover {
+    transform: translateY(0.1rem);
+  }
+  .add-marks div i,
+  .add-marks div a {
+    cursor: pointer;
+    font-size: 0.8rem;
+    color: var(--whiteColor);
+    color: var(--blueColor);
+  }
+  
+  .list-student {
+    margin-top: 20px;
+  }
+  
+  .student-identity {
+    display: flex;
+    justify-content: space-between;
+    padding: 18px;
+    box-shadow: 0px 5px 10px var(--grayShadow);
+  }
+  .student-identity .stdt {
+    gap: 10px;
+  }
+  .student-identity .stdt .regnumber {
+    color: var(--blueColor);
+  }
+  .student-identity div {
+    display: flex;
+    align-items: center;
+  }
+  .student-identity .modify {
+    cursor: pointer;
+    margin-left: 5px;
+    padding: 8px 10px;
+    font-size: 0.8rem;
+    border-radius: 3px;
+    color: var(--blueColor);
+    background-color: var(--btnColor);
+  }
+  .student-identity .delete {
+    cursor: pointer;
+    margin-left: 5px;
+    padding: 8px 10px;
+    font-size: 0.8rem;
+    border-radius: 3px;
+    color: var(--redColor);
+    background-color: var(--btnColor);
+  }
+  
+  /********** THESE CODE BELLOW IS FOR OUR POPUP **********/
+  .popup {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 3s ease;
+    transform: translate(-50%, -50%);
+    background-color: var(--blackShadow);
+  }
+  .popup .popup-container {
+    width: -moz-fit-content;
+    width: fit-content;
+    padding: 40px 50px;
+    background-color: var(--whiteColor);
+  }
+  .popup .popup-container h4 {
+    margin-bottom: 5px;
+    color: var(--blueColor);
+  }
+  .popup .popup-container .popup-btn {
+    display: flex;
+    gap: 8px;
+    -webkit-column-gap: 8px;
+    margin-top: 15px;
+  }
+  .popup .popup-container .popup-btn .cancel-popup {
+    width: 100%;
+    padding: 10px 15px;
+    text-transform: uppercase;
+    color: var(--whiteColor);
+    font-weight: 700;
+    color: var(--whiteColor);
+    background: linear-gradient(90deg, var(--blueColor), var(--gray));
+    background-color: var(--blueColor);
+  }
+  .popup .popup-container .popup-btn .delete-popup {
+    width: 100%;
+    padding: 10px 15px;
+    text-transform: uppercase;
+    color: var(--whiteColor);
+    font-weight: 700;
+    background-color: var(--redColor);
+  }
+  
+  .hidden-popup {
+    display: none;
+  }
+  
+  .add-new-student {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .add-new-student .new-student-items {
+    width: 40%;
+    padding: 20px 30px;
+    background-color: var(--whiteColor);
+  }
+  
+  .connect-section {
+    height: 100vh;
+    display: flex;
+    padding: 20px;
+    align-items: center;
+    justify-content: center;
+  }
+  .connect-section .connect {
+    width: 40%;
+    padding: 20px 20px;
+    background-color: var(--whiteColor);
+  }
+  
+  .error, .success {
+    text-align: center;
+    font-size: 0.8rem;
+    color: red;
+  }
+  
+  .success {
+    color: green;
+  }
+  
+  /********** this is for adding a new class **********/
+  .design-modules .add-module {
+    display: flex;
+    justify-content: flex-end;
+  }
+  .design-modules .add-module:hover {
+    transform: translateY(0.1rem);
+  }
+  .design-modules .add-module div {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    -webkit-column-gap: 5px;
+    width: -moz-fit-content;
+    width: fit-content;
+    padding: 10px 15px;
+    margin-top: 10px;
+    border-radius: 5px;
+    background-color: var(--blueColor);
+  }
+  .design-modules .add-module div i,
+  .design-modules .add-module div a {
+    font-size: 0.8rem;
+    color: var(--whiteColor);
+  }
+  .design-modules .module-name {
+    padding: 18px;
+    display: flex;
+    margin-top: 5px;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0px 5px 10px var(--grayShadow);
+  }
+  .design-modules .module-name div {
+    display: flex;
+    align-items: center;
+  }
+  .design-modules .module-name div span {
+    color: var(--blueColor);
+    font-weight: 600;
+  }
+  .design-modules .module-name div .modify {
+    cursor: pointer;
+    margin-left: 5px;
+    padding: 8px 10px;
+    font-size: 0.8rem;
+    border-radius: 3px;
+    color: var(--blueColor);
+    background-color: var(--btnColor);
+  }
+  .design-modules .module-name div .delete {
+    cursor: pointer;
+    margin-left: 5px;
+    padding: 8px 10px;
+    font-size: 0.8rem;
+    border-radius: 3px;
+    color: var(--redColor);
+    background-color: var(--btnColor);
+  }
+  
+  /********* all the content of the page titulaire **********/
+  .add-titulaire {
+    display: flex;
+    justify-content: flex-end;
+  }
+  .add-titulaire:hover {
+    transform: translateY(0.1rem);
+  }
+  .add-titulaire div {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    -webkit-column-gap: 5px;
+    width: -moz-fit-content;
+    width: fit-content;
+    padding: 10px 15px;
+    margin-top: 10px;
+    border-radius: 5px;
+    background-color: var(--blueColor);
+  }
+  .add-titulaire div i,
+  .add-titulaire div a {
+    cursor: pointer;
+    font-size: 0.8rem;
+    color: var(--whiteColor);
+  }
+  
+  .all-titulaire {
+    display: grid;
+    grid-template-columns: auto auto auto;
+  }
+  
+  .titulaire-item {
+    width: 100%;
+    margin-top: 15px;
+    padding: 10px 15px;
+    box-shadow: 0px 5px 15px var(--grayShadow);
+  }
+  .titulaire-item .item {
+    display: flex;
+    gap: 8px;
+  }
+  .titulaire-item .item img {
+    width: 60px;
+    height: 60px;
+    border-radius: 100%;
+    -o-object-fit: cover;
+       object-fit: cover;
+  }
+  .titulaire-item .item div .modify {
+    cursor: pointer;
+    margin-left: 5px;
+    padding: 8px 10px;
+    font-size: 0.8rem;
+    border-radius: 3px;
+    margin-top: 5px;
+    font-size: 0.8rem;
+    color: var(--blueColor);
+    background-color: var(--btnColor);
+  }
+  .titulaire-item .item div .delete {
+    margin-top: 5px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    margin-left: 5px;
+    padding: 8px 10px;
+    font-size: 0.8rem;
+    border-radius: 3px;
+    color: var(--redColor);
+    background-color: var(--btnColor);
+  }
+  
+  .popup-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .popup-container span {
+    font-weight: bold;
+  }
+  
+  .tutor-connected {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    -webkit-column-gap: 5px;
+    justify-content: flex-end;
+  }
+  .tutor-connected img {
+    width: 30px;
+    height: 30px;
+    -o-object-fit: cover;
+       object-fit: cover;
+    border-radius: 50%;
+  }
+  
+  .tutor-content {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 10px;
+    -webkit-column-gap: 10px;
+    margin-top: 80px;
+  }
+  .tutor-content .tutor-item {
+    text-align: center;
+    padding: 30px 30px;
+    box-shadow: 0px 5px 10px var(--grayShadow);
+  }
+  .tutor-content .tutor-item .tutor-icon {
+    padding: 20px 20px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    color: var(--whiteColor);
+    background-color: var(--blueColor);
+  }
+  .tutor-content .tutor-item .click-div {
+    width: -moz-fit-content;
+    width: fit-content;
+    padding: 10px;
+    margin: auto;
+    margin-top: 10px;
+    transition: 0.8s;
+    border: 2px dotted var(--blueColor);
+  }
+  .tutor-content .tutor-item .click-div a,
+  .tutor-content .tutor-item .click-div i {
+    font-size: 0.8rem;
+    color: var(--blueColor);
+  }
+  .tutor-content .tutor-item:hover {
+    box-shadow: 0px 15px 20px var(--grayShadow);
+    transform: translateY(10px);
+  }
+  
+  .table-section {
+    font-size: 0.8rem;
+    padding: 40px 40px;
+  }
+  .table-section .top-section {
+    display: flex;
+    justify-content: space-between;
+  }
+  .table-section .top-section .school-logo img {
+    width: 70px;
+  }
+  .table-section .identity {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  .table-section table {
+    width: 100%;
+    margin: auto;
+    border-collapse: collapse;
+  }
+  .table-section table tbody .head {
+    font-weight: 600;
+  }
+  .table-section table tbody tr th, .table-section table tbody tr td {
+    padding: 10px;
+    border: 1px solid var(--blackColor);
+  }
+  .table-section .marks-content {
+    margin-top: 30px;
+    display: grid;
+    gap: 10px;
+    -webkit-column-gap: 10px;
+    margin-bottom: 30px;
+    grid-template-columns: auto auto auto auto;
+  }
+  .table-section .marks-content .bulletin-result {
+    border-bottom: 1px solid var(--blackColor);
+    border-right: 1px solid var(--blackColor);
+    border-left: 1px solid var(--blackColor);
+  }
+  .table-section .marks-content .bulletin-result h4,
+  .table-section .marks-content .bulletin-result p {
+    padding: 5px;
+    border-top: 1px solid var(--blackColor);
+  }
+  .table-section .admitted {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    justify-content: flex-end;
+    gap: 10px;
+    font-size: 1.2rem;
+    -webkit-column-gap: 10px;
+  }
+  .table-section .admitted i {
+    font-size: 1rem;
+    color: green;
+  }
+  .table-section .principal-signature {
+    margin-top: 40px;
+    display: grid;
+    text-align: center;
+    justify-content: center;
+  }
+  .table-section .principal-signature img {
+    width: 180px;
+  }
+  .table-section .print {
+    display: flex;
+    justify-content: flex-end;
+  }
+  .table-section .print .printButton {
+    border: none;
+    padding: 10px 30px;
+    color: var(--whiteColor);
+    font-weight: 700;
+    cursor: pointer;
+    background-color: var(--blueColor);
+    margin-bottom: 20px;
+  }
+  
+  .home-page {
+    width: 100%;
+    height: 85vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .home-page {
+    padding: 20px 80px;
+    background-color: var(--grayColor);
+    text-align: center;
+    width: 85%;
+    margin: auto;
+  }
+  
+  .home-items h2 {
+    color: var(--blueColor);
+  }
+  
+  .home-items p {
+    margin-top: 20px;
+  }
+  
+  .home-page img {
+    width: 100%;
+    border-radius: 20px;
+  }
+  
+  .home-link {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+  }
+  .home-link a {
+    width: 15%;
+    text-align: center;
+    font-size: 0.8rem;
+    padding: 8px 10px;
+    border-radius: 25px;
+    background: unset;
+    color: var(--blueColor);
+    border: 1px solid var(--blueColor);
+    transition: 0.8s ease-in;
+  }
+  .home-link a:hover {
+    color: var(--whiteColor);
+    background-color: var(--blueColor);
+    border: 1px solid var(--blueColor);
+  }
+  
+  .hero-waves {
+    display: block;
+    width: 100%;
+    height: 110px;
+    position: relative;
+  }
+  
+  .wave1 use {
+    animation: move-forever1 10s linear infinite;
+    animation-delay: -2s;
+  }
+  
+  .wave2 use {
+    animation: move-forever2 8s linear infinite;
+    animation-delay: -2s;
+  }
+  
+  .wave3 use {
+    animation: move-forever3 6s linear infinite;
+    animation-delay: -2s;
+  }
+  
+  @keyframes move-forever1 {
+    0% {
+      transform: translate(85px, 0%);
+    }
+    100% {
+      transform: translate(-90px, 0%);
+    }
+  }
+  @keyframes move-forever2 {
+    0% {
+      transform: translate(-90px, 0%);
+    }
+    100% {
+      transform: translate(85px, 0%);
+    }
+  }
+  @keyframes move-forever3 {
+    0% {
+      transform: translate(-90px, 0%);
+    }
+    100% {
+      transform: translate(85px, 0%);
+    }
+  }

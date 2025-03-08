@@ -9,7 +9,8 @@ require_once('../../../database/DBConnection.php');
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="../../../css/index.css">
+    <link rel="stylesheet" href="../../../asset/style.css">
+    <link rel="stylesheet" href="../../../asset/responsive.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Outfit:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
@@ -65,9 +66,10 @@ if (isset($_GET['student_id']) && !empty($_GET['student_id'])) {
         <div class="top-section">
             <div class="bulletin-title">
                 <h2>REPUBLIC OF CAMEROON</h2>
-                <h4>COLLEGE SAINT JEAN-BAPTISTE</h4>
-                <p>B.P 50 DOUALA</p>
-                <P>Phone: 1234567889</P>
+                <h4>COLLEGE SAINT JEAN-BAPTISTE OF BANGANGTE</h4>
+                <p>B.P 03 BANGANGTE</p>
+                <p>DIOCESE OF BAFOUSSAM</p>
+                <P>Phone: 243031465</P>
             </div>
             <div class="school-logo">
                 <p><img src="../../../images/logo-st-jean.png" alt=""></p>
@@ -295,8 +297,9 @@ if (isset($_GET['student_id']) && !empty($_GET['student_id'])) {
         <?= ($grand_total > 10) ? "<div class='admitted'><p>Admitted: </p><i class='fa-regular fa-circle-check'></i></div> ": "<div class='admitted'><p>Admitted: </p><i style='color:red' class='<i fa-regular fa-circle-xmark'></i></div> " ?>
 
         <div class="principal-signature">
-            <p><img src="../../../images/signature.png" alt="signature"></p>
-            <h3>Armel MBIATAT DANY</h3>
+            <p>The principal</p>
+            <p><img src="../../../images/signature-armel.png" alt="signature"></p>
+            <h3 style="margin-top: 0px;"> Mr. ARMEL TCHOUMDJIN MBIATAT </h3>
         </div>
 
         <div class="print">
